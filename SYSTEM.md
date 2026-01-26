@@ -1,6 +1,6 @@
-# Bridge Bidding System
+# Standard Natural Bidding System
 
-A comprehensive reference for our bridge partnership bidding system.
+A comprehensive reference for our bridge partnership bidding system, based on Standard American (SAYC) conventions.
 
 ---
 
@@ -553,6 +553,21 @@ When responder bids 2NT(!) asking about opener's short suit:
 | Weak Suit Ask | 1M - 2NT(!) | Asking about short suit |
 | Blackwood | 4NT | Asking for aces |
 | Splinter | 4♣/♦/♥(!) | Singleton/void, slam interest |
+
+---
+
+## About This System
+
+This is a **Standard Natural bidding system** based on SAYC (Standard American Yellow Card) conventions. The original documentation was written in Russian, but the system itself uses internationally recognized conventions common to most natural bidding systems worldwide.
+
+**Core framework:**
+- 5-card majors
+- 15-17 NT
+- Strong artificial 2♣
+- Stayman and Jacoby Transfers
+- Blackwood 4NT
+
+See [REFERENCES.md](REFERENCES.md) for related systems and resources.
 
 ---
 
