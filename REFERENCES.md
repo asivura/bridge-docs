@@ -137,4 +137,4 @@ Our system is a **Standard Natural bidding system** with these characteristics:
 
 ---
 
-*Last updated: January 2025*
+*Last updated: January 2026*

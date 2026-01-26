@@ -350,4 +350,4 @@ Against opponent's double or overcall of 1♣:
 
 ---
 
-*Document based on standard Precision Club as commonly played. Last updated: January 2025*
+*Document based on standard Precision Club as commonly played. Last updated: January 2026*

@@ -331,4 +331,4 @@ The 2/1 game force is **OFF** in these situations:
 
 ---
 
-*Document based on standard 2/1 Game Forcing as played in ACBL tournaments. Last updated: January 2025*
+*Document based on standard 2/1 Game Forcing as played in ACBL tournaments. Last updated: January 2026*

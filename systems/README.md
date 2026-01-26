@@ -173,4 +173,4 @@ A comparative guide to the world's most popular bridge bidding systems.
 
 ---
 
-*Last updated: January 2025*
+*Last updated: January 2026*

@@ -573,4 +573,4 @@ See [REFERENCES.md](REFERENCES.md) for related systems and resources.
 
 ---
 
-*Document generated from system scans (pages 4-12). Last updated: January 2025*
+*Document generated from system scans (pages 4-12). Last updated: January 2026*

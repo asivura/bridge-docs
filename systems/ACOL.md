@@ -302,4 +302,4 @@ After a major suit raise, a new suit asks about help in that suit for game decis
 
 ---
 
-*Document based on Standard English Acol / Bridge for All Acol. Last updated: January 2025*
+*Document based on Standard English Acol / Bridge for All Acol. Last updated: January 2026*

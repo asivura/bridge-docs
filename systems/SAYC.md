@@ -718,4 +718,4 @@ Lighter requirements (about 3 HCP less than direct seat).
 
 ---
 
-*Document based on official ACBL SAYC System Booklet (Revised January 2006). Last updated: January 2025*
+*Document based on official ACBL SAYC System Booklet (Revised January 2006). Last updated: January 2026*
