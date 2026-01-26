@@ -6,14 +6,14 @@ A comparative guide to the world's most popular bridge bidding systems.
 
 ## Quick Comparison
 
-| Feature | Standard/SAYC | 2/1 GF | Acol | Precision |
-|---------|---------------|--------|------|-----------|
+| Feature | **SAYC** | 2/1 GF | Acol | Precision |
+|---------|----------|--------|------|-----------|
 | **1NT Range** | 15-17 | 15-17 | **12-14** | 13-15 |
 | **Major Opening** | 5 cards | 5 cards | **4 cards** | 5 cards |
 | **Strong Opening** | 2♣ (22+) | 2♣ (22+) | 2♣ (23+) | **1♣ (16+)** |
 | **2-Level Response** | Forcing 1 round | **Game Force** | Forcing 1 round | Varies |
-| **Origin** | USA | USA | UK | Taiwan |
-| **Popularity** | Worldwide | USA | UK/Commonwealth | Asia |
+| **Origin** | USA (ACBL) | USA | UK | Taiwan |
+| **Popularity** | **Worldwide, BBO** | USA tournaments | UK/Commonwealth | Asia |
 
 ---
 
@@ -21,7 +21,8 @@ A comparative guide to the world's most popular bridge bidding systems.
 
 | System | File | Description |
 |--------|------|-------------|
-| [Standard Natural](../SYSTEM.md) | `SYSTEM.md` | Our partnership system (SAYC-based) |
+| [**SAYC**](SAYC.md) | `SAYC.md` | **Comprehensive Standard American Yellow Card** |
+| [Partnership Card](../SYSTEM.md) | `SYSTEM.md` | Our specific partnership agreements |
 | [Acol](ACOL.md) | `ACOL.md` | British 4-card major system |
 | [2/1 Game Forcing](TWO-OVER-ONE.md) | `TWO-OVER-ONE.md` | American tournament standard |
 | [Precision Club](PRECISION.md) | `PRECISION.md` | Artificial strong club system |

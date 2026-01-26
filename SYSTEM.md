@@ -1,6 +1,8 @@
-# Standard Natural Bidding System
+# Partnership System Card
 
-A comprehensive reference for our bridge partnership bidding system, based on Standard American (SAYC) conventions.
+Our partnership bidding system, based on **SAYC (Standard American Yellow Card)**.
+
+> **Note:** This document captures our specific partnership agreements from the scanned system cards. For the complete, official SAYC reference, see [systems/SAYC.md](systems/SAYC.md).
 
 ---
 
