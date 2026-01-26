@@ -16,9 +16,21 @@ This is a **Standard Natural bidding system** based on SAYC (Standard American Y
 
 | Document | Description |
 |----------|-------------|
-| [SYSTEM.md](SYSTEM.md) | Complete bidding system reference |
+| [SYSTEM.md](SYSTEM.md) | Our partnership system (Standard Natural) |
 | [REFERENCES.md](REFERENCES.md) | Related systems and learning resources |
+| [systems/](systems/) | **Other popular systems for comparison** |
 | `system-scans/` | Original system card scans |
+
+## Other Systems
+
+Detailed documentation for other popular bidding systems:
+
+| System | File | Description |
+|--------|------|-------------|
+| [Acol](systems/ACOL.md) | British standard, 4-card majors, 12-14 NT |
+| [2/1 Game Forcing](systems/TWO-OVER-ONE.md) | American tournament standard |
+| [Precision Club](systems/PRECISION.md) | Artificial 1♣ = 16+ system |
+| [Comparison](systems/README.md) | Side-by-side system comparison |
 
 ## Quick Reference
 
