@@ -6,24 +6,19 @@ Documentation for bridge bidding systems and conventions.
 
 ## Our Partnership System
 
-Our system is based on **SAYC (Standard American Yellow Card)** - the most widely used bidding system in the world.
+Our system is based on **SAYC (Standard American Yellow Card)** with several key differences, most notably **strong two-bids (20-22)** instead of weak twos.
 
-### Why SAYC?
-
-Comparing our scanned system cards to standard systems, we found:
+### Key Differences from SAYC
 
 | Feature | Our System | SAYC |
 |---------|------------|------|
-| 1NT opening | 15-17 | 15-17 |
-| Major openings | 5+ cards | 5+ cards |
-| Strong 2♣ | 22+ | 22+ |
-| 2NT opening | 20-21 | 20-21 |
-| Stayman | Yes | Yes |
-| Jacoby Transfers | Yes | Yes |
-| Weak twos | 6-card, 5-10 | 6-card, 5-11 |
-| Blackwood | Yes | Yes |
+| 1-level openings | **12-19** | 13-21 |
+| 2♦/2♥/2♠ openings | **20-22, 5+ suit (strong)** | 5-11, 6+ suit (weak) |
+| 2♣ minimum | **17+ (game in hand)** | 22+ |
+| Blackwood 5♣ | **0 aces** | 0 or 4 aces |
+| 2-level overcall | **8-16** | 10-16 |
 
-The match is nearly identical. Our system cards (originally in Russian) document standard SAYC conventions with minor variations.
+See [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) for complete details.
 
 ---
 
@@ -34,8 +29,11 @@ The match is nearly identical. Our system cards (originally in Russian) document
 | Document | Description |
 |----------|-------------|
 | [SYSTEM.md](SYSTEM.md) | Our partnership agreements (from scanned cards) |
+| [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) | **All differences between our system and SAYC** |
+| [SYSTEM-COMPARISON.md](SYSTEM-COMPARISON.md) | **Side-by-side comparison of every bid** |
+| [SAYC-CONVENTION-CARD.md](SAYC-CONVENTION-CARD.md) | SAYC reference in convention card format |
 | [REFERENCES.md](REFERENCES.md) | Learning resources and related systems |
-| `system-scans/` | Original scanned system cards |
+| `system-scans/` | Original scanned system cards (Russian) |
 
 ### System References
 
@@ -93,14 +91,16 @@ The match is nearly identical. Our system cards (originally in Russian) document
 
 ---
 
-## Quick Reference (SAYC)
+## Quick Reference (Our System)
 
 | Opening | HCP | Requirements |
 |---------|-----|--------------|
-| 1♣/1♦ | 13-22 | 3+ cards |
-| 1♥/1♠ | 13-22 | 5+ cards |
+| 1♣ | 12-19 | 5+♣ or 3-3 minors, denies 5M |
+| 1♦ | 12-19 | 4+♦, denies 5M |
+| 1♥/1♠ | 12-19 | 5+ cards |
 | 1NT | 15-17 | Balanced |
-| 2♣ | 22+ | Strong, artificial |
-| 2♦/♥/♠ | 5-11 | 6-card suit, weak |
+| 2♣ | 22+/17+ | Strong (or 17+ game in hand) |
+| 2♦/♥/♠ | **20-22** | **5+ card suit (strong)** |
 | 2NT | 20-21 | Balanced |
+| 3-level | 6-10 | 7+ card preempt |
 | 3NT | 25-27 | Balanced |

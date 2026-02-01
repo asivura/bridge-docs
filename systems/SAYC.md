@@ -50,10 +50,10 @@ SAYC was created by the American Contract Bridge League to:
 
 | Open | HCP | Hand Description |
 |------|-----|------------------|
-| 1♣ | 13-22 | 3+♣ (bid with 3-3 minors) |
-| 1♦ | 13-22 | 4+♦ (bid with 4-4 minors), or 3♦ with 4-4-3-2 |
-| 1♥ | 13-22 | **5+♥** |
-| 1♠ | 13-22 | **5+♠** |
+| 1♣ | 13-21 | 3+♣ (bid with 3-3 minors) |
+| 1♦ | 13-21 | 4+♦ (bid with 4-4 minors), or 3♦ with 4-4-3-2 |
+| 1♥ | 13-21 | **5+♥** |
+| 1♠ | 13-21 | **5+♠** |
 | 1NT | **15-17** | Balanced (may include 5-card major) |
 | 2♣ | **22+** | Strong artificial, or 9+ playing tricks |
 | 2♦ | 5-11 | 6+♦, weak two |
@@ -167,7 +167,7 @@ Opening 1NT shows **15-17 HCP, balanced** (may include 5-card major or minor).
 
 ## Responses to Major Openings
 
-Opening 1♥/1♠ shows **13-22 HCP, 5+ cards**.
+Opening 1♥/1♠ shows **13-21 HCP, 5+ cards**.
 
 ### Response Point Ranges
 
@@ -226,8 +226,8 @@ Shows 10-12 support points with 3-4 trump.
 
 ## Responses to Minor Openings
 
-Opening 1♣ shows **13-22 HCP, 3+♣**.
-Opening 1♦ shows **13-22 HCP, 3+♦** (usually 4+).
+Opening 1♣ shows **13-21 HCP, 3+♣**.
+Opening 1♦ shows **13-21 HCP, 3+♦** (usually 4+).
 
 ### Response Summary (to 1♣/1♦)
 
