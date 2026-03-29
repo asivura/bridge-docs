@@ -43,7 +43,9 @@ See [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) for complete details.
 |----------|-------------|
 | [WEBSITE-PLAN.md](WEBSITE-PLAN.md) | Architecture decisions for the static website |
 | [AGENT-TEAM-WORKFLOW.md](AGENT-TEAM-WORKFLOW.md) | How we use agent teams and track progress |
-| `website/` | Astro + shadcn/ui static site (in progress) |
+| `website/` | Astro + shadcn/ui static site ([live](https://asivura.github.io/bridge-docs/)) |
+| `.github/workflows/issues.yml` | Issue status automation (label transitions) |
+| `.github/workflows/deploy.yml` | GitHub Pages deploy with PDF generation |
 
 ### System References
 

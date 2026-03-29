@@ -54,6 +54,9 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 - Add comments to issues when work is completed, referencing commit hashes
 - Use workstream-level issues with checklists, not one issue per small task
 - Before closing any issue, spawn a QA agent to verify all checklist items are complete and working
+- Issues have automated status labels via `.github/workflows/issues.yml`
+- Comment triggers: `[in-progress]`, `[qa-needed]`, `[qa-pass]` to transition status
+- Status flow: `new` → `in-progress` → `qa-needed` → `verified` → closed
 
 ## When Updating Documents
 
