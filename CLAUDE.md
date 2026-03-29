@@ -53,6 +53,7 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 - Keep issue checklists in sync with actual progress
 - Add comments to issues when work is completed, referencing commit hashes
 - Use workstream-level issues with checklists, not one issue per small task
+- Before closing any issue, spawn a QA agent to verify all checklist items are complete and working
 
 ## When Updating Documents
 
