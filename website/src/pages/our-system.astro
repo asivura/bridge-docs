@@ -14,6 +14,10 @@ for (const section of ourSystemSections) {
   grouped.get(key)!.push(section);
 }
 
+// Assign sequential table numbers across all sections
+const tableNumberMap = new Map<typeof ourSystemSections[number], number>();
+ourSystemSections.forEach((s, i) => tableNumberMap.set(s, i + 1));
+
 const tocItems = ourSystemSections.map((s) => ({
   id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
   label: s.title,
@@ -40,9 +44,9 @@ const tocItems = ourSystemSections.map((s) => ({
               class="overflow-x-auto scroll-mt-4"
             >
               {isBiddingSection(section) ? (
-                <BiddingTable title={section.title} prefix={section.prefix} entries={section.entries} />
+                <BiddingTable tableNumber={tableNumberMap.get(section)} title={section.title} prefix={section.prefix} entries={section.entries} />
               ) : (
-                <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+                <GenericTableView tableNumber={tableNumberMap.get(section)} title={section.title} headers={section.headers} rows={section.rows} />
               )}
             </div>
           ))}

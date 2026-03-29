@@ -22,16 +22,16 @@ const tocItems = saycSystemSections.map((s) => ({
 
   <div class="mt-8 flex gap-8">
     <div class="min-w-0 flex-1 space-y-8">
-      {saycSystemSections.map((section) => (
+      {saycSystemSections.map((section, idx) => (
         <div
           id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
           data-toc-target
           class="overflow-x-auto scroll-mt-4"
         >
           {isBiddingSection(section) ? (
-            <BiddingTable title={section.title} prefix={section.prefix} entries={section.entries} />
+            <BiddingTable tableNumber={idx + 1} title={section.title} prefix={section.prefix} entries={section.entries} />
           ) : (
-            <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+            <GenericTableView tableNumber={idx + 1} title={section.title} headers={section.headers} rows={section.rows} />
           )}
         </div>
       ))}
