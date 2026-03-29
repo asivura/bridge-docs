@@ -1,0 +1,507 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TableOfContents from "@/components/TableOfContents.astro";
+import { Badge } from "@/components/ui/badge";
+import "@/styles/global.css";
+
+interface Resource {
+  name: string;
+  url?: string;
+  type: "website" | "book" | "app" | "video";
+  cost: "Free" | "Paid" | "Free/Paid";
+  level: "Beginner" | "Intermediate" | "Advanced" | "All";
+  description: string;
+}
+
+interface Section {
+  id: string;
+  title: string;
+  note?: string;
+  resources: Resource[];
+}
+
+const sections: Section[] = [
+  {
+    id: "getting-started",
+    title: "Getting Started",
+    resources: [
+      {
+        name: "ACBL SAYC Booklet",
+        url: "https://web2.acbl.org/documentlibrary/play/SP3%20(bk)%20single%20pages.pdf",
+        type: "website",
+        cost: "Free",
+        level: "Beginner",
+        description: "Official ACBL Standard American Yellow Card reference booklet (PDF)",
+      },
+      {
+        name: "My Bridge Buddy",
+        url: "https://mybridgebuddy.com/",
+        type: "website",
+        cost: "Free",
+        level: "Beginner",
+        description: "AI-powered bridge trainer for practicing bidding and play",
+      },
+      {
+        name: "SAYCBridge.com",
+        url: "http://www.saycbridge.com/",
+        type: "website",
+        cost: "Free",
+        level: "Beginner",
+        description: "Interactive SAYC bidding practice bot with explanations",
+      },
+      {
+        name: "Bridge for Dummies",
+        type: "book",
+        cost: "Paid",
+        level: "Beginner",
+        description: "Eddie Kantar's approachable introduction to bridge fundamentals",
+      },
+    ],
+  },
+  {
+    id: "online-platforms",
+    title: "Online Platforms",
+    resources: [
+      {
+        name: "Bridge Base Online (BBO)",
+        url: "https://www.bridgebase.com/",
+        type: "website",
+        cost: "Free/Paid",
+        level: "All",
+        description: "The largest online bridge platform with live and robot play",
+      },
+      {
+        name: "Bridge Winners",
+        url: "https://bridgewinners.com/",
+        type: "website",
+        cost: "Free",
+        level: "Intermediate",
+        description: "Community site with expert discussions, articles, and bidding polls",
+      },
+      {
+        name: "60 Second Bridge",
+        url: "https://www.60secondbridge.com/",
+        type: "website",
+        cost: "Free",
+        level: "Beginner",
+        description: "Quick daily bridge lessons and tips in bite-sized format",
+      },
+      {
+        name: "No Fear Bridge",
+        url: "https://www.nofearbridge.com/",
+        type: "website",
+        cost: "Free/Paid",
+        level: "Beginner",
+        description: "Structured lessons and practice for new players",
+      },
+      {
+        name: "Larry Cohen's Bridge",
+        url: "https://www.larryco.com/",
+        type: "website",
+        cost: "Free/Paid",
+        level: "Intermediate",
+        description: "Articles, lessons, and convention guides from world-class player Larry Cohen",
+      },
+      {
+        name: "Richard Pavlicek",
+        url: "http://www.rpbridge.net/",
+        type: "website",
+        cost: "Free",
+        level: "Advanced",
+        description: "In-depth bridge studies, puzzles, and encyclopedic reference material",
+      },
+    ],
+  },
+  {
+    id: "video-resources",
+    title: "Video Resources",
+    resources: [
+      {
+        name: "Bridge with Pete (Pete Hollands)",
+        url: "https://www.youtube.com/@PeteHollandsBridge",
+        type: "video",
+        cost: "Free",
+        level: "Beginner",
+        description: "Popular YouTube channel (16k+ subscribers) with clear lesson-style videos",
+      },
+      {
+        name: "Graeme Tuffnell Bridge Videos",
+        url: "https://watch.graemetuffnell.com/",
+        type: "video",
+        cost: "Free/Paid",
+        level: "Intermediate",
+        description: "Structured video lessons from professional bridge player and commentator",
+      },
+      {
+        name: "WBF on Twitch",
+        url: "https://www.twitch.tv/directory/game/Bridge",
+        type: "video",
+        cost: "Free",
+        level: "All",
+        description: "Live world championship bridge coverage with expert commentary",
+      },
+      {
+        name: "Great Bridge Links Video Directory",
+        url: "https://greatbridgelinks.com/gblrsc/bridge-videos/",
+        type: "video",
+        cost: "Free",
+        level: "All",
+        description: "Curated directory of bridge video resources across the web",
+      },
+    ],
+  },
+  {
+    id: "books",
+    title: "Books",
+    resources: [
+      {
+        name: "Standard Bidding with SAYC",
+        type: "book",
+        cost: "Paid",
+        level: "Beginner",
+        description: "Downey & Pomer's definitive guide to SAYC bidding, the essential reference",
+      },
+      {
+        name: "25 Bridge Conventions You Should Know",
+        type: "book",
+        cost: "Paid",
+        level: "Intermediate",
+        description: "Seagram, Smith & Bird's practical guide to the most useful conventions",
+      },
+      {
+        name: "How to Play a Bridge Hand",
+        type: "book",
+        cost: "Paid",
+        level: "Beginner",
+        description: "Bill Root's classic guide to declarer play technique",
+      },
+      {
+        name: "How to Defend a Bridge Hand",
+        type: "book",
+        cost: "Paid",
+        level: "Intermediate",
+        description: "Bill Root's companion volume on defensive strategy and signaling",
+      },
+      {
+        name: "Karen Walker's Beginner Course",
+        url: "https://www.kwbridge.com/kwbook.htm",
+        type: "book",
+        cost: "Free",
+        level: "Beginner",
+        description: "Free online book covering bidding, play, and defense for new players",
+      },
+    ],
+  },
+  {
+    id: "practice-tools",
+    title: "Practice Tools & Apps",
+    resources: [
+      {
+        name: "Bridge by NeuralPlay",
+        type: "app",
+        cost: "Paid",
+        level: "All",
+        description: "iOS/Android app with dedicated SAYC bidding mode and AI opponents",
+      },
+      {
+        name: "BBO GIBBO Robot",
+        url: "https://www.bridgebase.com/",
+        type: "app",
+        cost: "Free",
+        level: "All",
+        description: "Neural network AI on BBO for practice games anytime",
+      },
+      {
+        name: "Shark Bridge",
+        type: "app",
+        cost: "Paid",
+        level: "Intermediate",
+        description: "Championship-level AI bridge app for serious practice",
+      },
+      {
+        name: "Standard American (SAYC) Quiz App",
+        type: "app",
+        cost: "Free",
+        level: "Beginner",
+        description: "iOS quiz app focused specifically on SAYC bidding scenarios",
+      },
+      {
+        name: "BridgeBee",
+        url: "https://bridgebee.app/",
+        type: "app",
+        cost: "Free",
+        level: "Beginner",
+        description: "Modern bridge practice app with guided lessons",
+      },
+    ],
+  },
+  {
+    id: "russian-resources",
+    title: "Russian Resources",
+    note: "These resources are in Russian (Русские ресурсы). Useful for players familiar with Russian bridge tradition, which our partnership system is based on.",
+    resources: [
+      {
+        name: "Bridge Academy (bridgeacadem.ru)",
+        url: "https://bridgeacadem.ru/online",
+        type: "website",
+        cost: "Free/Paid",
+        level: "All",
+        description: "Online bridge academy with structured courses and practice",
+      },
+      {
+        name: "Bridge Online (bridgeonline.ru)",
+        url: "https://bridgeonline.ru/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Russian online bridge platform for live play",
+      },
+      {
+        name: "Bridge School A6 (St. Petersburg)",
+        url: "https://bridge-a6.ru/",
+        type: "website",
+        cost: "Free/Paid",
+        level: "Beginner",
+        description: "St. Petersburg bridge school with courses and materials",
+      },
+      {
+        name: "Bridgeclub.ru",
+        url: "http://www.bridgeclub.ru/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Russian bridge club with articles, forums, and tournament info",
+      },
+      {
+        name: "Russian Bridge Federation",
+        url: "https://www.bridgesport.ru/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Official Russian Bridge Federation site with news and tournament calendar",
+      },
+    ],
+  },
+  {
+    id: "convention-guides",
+    title: "Convention Guides",
+    resources: [
+      {
+        name: "BridgeBum SAYC Reference",
+        url: "https://www.bridgebum.com/sayc.php",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Clear, well-organized online SAYC convention reference",
+      },
+      {
+        name: "Karen Walker Conventions",
+        url: "https://kwbridge.com/michaels.htm",
+        type: "website",
+        cost: "Free",
+        level: "Intermediate",
+        description: "Detailed convention explanations with examples and tips",
+      },
+      {
+        name: "Larry Cohen Articles",
+        url: "https://www.larryco.com/bridge-articles/",
+        type: "website",
+        cost: "Free",
+        level: "Intermediate",
+        description: "Extensive article library covering conventions, bidding, and strategy",
+      },
+      {
+        name: "ACBL Convention PDFs",
+        url: "http://web2.acbl.org/documentLibrary/play/Commonly_Used_Conventions/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Official ACBL downloadable PDFs for commonly used conventions",
+      },
+    ],
+  },
+  {
+    id: "community",
+    title: "Community",
+    resources: [
+      {
+        name: "BBO Forums",
+        url: "https://www.bridgebase.com/forums/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Active discussion forums on the largest online bridge platform",
+      },
+      {
+        name: "Bridge on Discord",
+        url: "https://discord.com/invite/uS22xhpawf",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Discord community for real-time bridge discussion and finding partners",
+      },
+      {
+        name: "Bridge Winners Forums",
+        url: "https://bridgewinners.com/",
+        type: "website",
+        cost: "Free",
+        level: "Intermediate",
+        description: "Expert-level forums with bidding polls and hand analysis",
+      },
+      {
+        name: "Great Bridge Links",
+        url: "https://greatbridgelinks.com/",
+        type: "website",
+        cost: "Free",
+        level: "All",
+        description: "Comprehensive directory of bridge websites, organized by category",
+      },
+    ],
+  },
+];
+
+const tocItems = sections.map((s) => ({ id: s.id, label: s.title }));
+
+const typeBadgeClass: Record<string, string> = {
+  website: "bg-blue-100 text-blue-800 border-blue-200",
+  book: "bg-amber-100 text-amber-800 border-amber-200",
+  app: "bg-purple-100 text-purple-800 border-purple-200",
+  video: "bg-rose-100 text-rose-800 border-rose-200",
+};
+
+const costBadgeClass: Record<string, string> = {
+  Free: "bg-emerald-100 text-emerald-800 border-emerald-200",
+  Paid: "bg-gray-100 text-gray-700 border-gray-200",
+  "Free/Paid": "bg-teal-100 text-teal-800 border-teal-200",
+};
+
+const levelBadgeClass: Record<string, string> = {
+  Beginner: "bg-green-100 text-green-800 border-green-200",
+  Intermediate: "bg-sky-100 text-sky-800 border-sky-200",
+  Advanced: "bg-orange-100 text-orange-800 border-orange-200",
+  All: "bg-gray-100 text-gray-600 border-gray-200",
+};
+---
+
+<BaseLayout title="Resources" description="Curated educational resources for learning bridge bidding, SAYC conventions, and improving your game.">
+  <div class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight">Resources</h1>
+    <p class="text-muted-foreground">
+      Curated resources for learning bridge, practicing SAYC, and improving your game.
+    </p>
+  </div>
+
+  <!-- Start Here callout -->
+  <div class="mt-6 rounded-lg border-2 border-primary/20 bg-primary/5 p-5">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-primary">Start Here</h2>
+    <p class="mt-1 text-sm text-muted-foreground">
+      Transitioning from our partnership system to SAYC? These three resources will get you up to speed fastest:
+    </p>
+    <ol class="mt-3 space-y-2 text-sm">
+      <li class="flex items-start gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">1</span>
+        <span>
+          <a href="https://web2.acbl.org/documentlibrary/play/SP3%20(bk)%20single%20pages.pdf" target="_blank" rel="noopener" class="font-medium underline underline-offset-4 hover:text-foreground">ACBL SAYC Booklet</a>
+          — The official reference. Read this alongside our
+          <a href="/bridge-docs/differences/" class="font-medium underline underline-offset-4 hover:text-foreground">Differences</a> page.
+        </span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">2</span>
+        <span>
+          <a href="http://www.saycbridge.com/" target="_blank" rel="noopener" class="font-medium underline underline-offset-4 hover:text-foreground">SAYCBridge.com</a>
+          — Practice SAYC bidding with an AI bot that explains its reasoning.
+        </span>
+      </li>
+      <li class="flex items-start gap-2">
+        <span class="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">3</span>
+        <span>
+          <a href="https://www.bridgebase.com/" target="_blank" rel="noopener" class="font-medium underline underline-offset-4 hover:text-foreground">Bridge Base Online</a>
+          — Play SAYC hands against robots or real opponents to build muscle memory.
+        </span>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Badge legend -->
+  <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+    <span class="font-medium">Legend:</span>
+    <span class="flex items-center gap-1.5">
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.website]}>Website</span>
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.book]}>Book</span>
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.app]}>App</span>
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.video]}>Video</span>
+    </span>
+    <span class="flex items-center gap-1.5">
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass.Free]}>Free</span>
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass.Paid]}>Paid</span>
+      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass["Free/Paid"]]}>Free/Paid</span>
+    </span>
+  </div>
+
+  <div class="mt-8 flex gap-8">
+    <!-- Main content -->
+    <div class="min-w-0 flex-1 space-y-8">
+      {sections.map((section) => (
+        <div
+          id={section.id}
+          data-toc-target
+          class="scroll-mt-4"
+        >
+          <div class="rounded-xl border bg-card shadow-sm">
+            <div class="border-b px-6 py-4">
+              <h2 class="text-lg font-semibold">{section.title}</h2>
+              {section.note && (
+                <p class="mt-1 text-sm text-muted-foreground">{section.note}</p>
+              )}
+            </div>
+            <div class="divide-y">
+              {section.resources.map((r) => (
+                <div class="flex flex-col gap-2 px-6 py-4 sm:flex-row sm:items-start sm:gap-4">
+                  <div class="min-w-0 flex-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                      {r.url ? (
+                        <a
+                          href={r.url}
+                          target="_blank"
+                          rel="noopener"
+                          class="font-medium underline underline-offset-4 hover:text-primary"
+                        >
+                          {r.name}
+                        </a>
+                      ) : (
+                        <span class="font-medium">{r.name}</span>
+                      )}
+                      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass[r.type]]}>
+                        {r.type.charAt(0).toUpperCase() + r.type.slice(1)}
+                      </span>
+                      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass[r.cost]]}>
+                        {r.cost}
+                      </span>
+                      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", levelBadgeClass[r.level]]}>
+                        {r.level}
+                      </span>
+                    </div>
+                    <p class="mt-1 text-sm text-muted-foreground">{r.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Sidebar TOC -->
+    <TableOfContents items={tocItems} />
+  </div>
+
+  <div class="mt-8 text-center">
+    <a
+      href="/bridge-docs/downloads/"
+      class="text-sm font-medium text-primary underline-offset-4 hover:underline"
+    >
+      Download printable convention cards &rarr;
+    </a>
+  </div>
+</BaseLayout>
