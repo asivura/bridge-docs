@@ -29,7 +29,7 @@ const scanSections = [
     page: 5,
     label: "Stayman Responses",
     russian: "Стэйман",
-    sections: ["Stayman Responses"],
+    sections: ["Responses to 1NT", "After Stayman: 1NT - 2♣(!)"],
     warnings: [],
   },
   {
@@ -37,7 +37,7 @@ const scanSections = [
     page: 5,
     label: "Jacoby Transfers",
     russian: "Трансфер Якоби",
-    sections: ["Jacoby Transfer Responses", "Direct Responses to 1NT"],
+    sections: ["After Heart Transfer: 1NT - 2♦(!) - 2♥", "After Spade Transfer: 1NT - 2♥(!) - 2♠", "Direct Minor Suit Sequences"],
     warnings: [],
   },
   {
@@ -45,7 +45,7 @@ const scanSections = [
     page: 6,
     label: "1NT Continuations / Blackwood",
     russian: "1NT продолжения / Блэквуд",
-    sections: ["Slam Invitation Sequence", "Blackwood (4NT) Responses"],
+    sections: ["Slam Invitation Sequences", "Ace Asking (4NT)"],
     warnings: [],
   },
   {
@@ -91,7 +91,7 @@ const scanSections = [
     page: 8,
     label: "Responses to 2♣",
     russian: "Ответы на 2♣",
-    sections: ["Strong 2♣ Opening", "2♣ Opener's Rebids After 2♦ Response"],
+    sections: ["Strong 2♣ Opening", "Responses to 2♣(!)", "Opener's Rebids After 2♣ - 2♦(!)", "Continuations After 2♣ - 2♦ - 2NT"],
     warnings: [],
   },
   {
@@ -154,7 +154,7 @@ const scanSections = [
     page: 12,
     label: "Scoring Reference",
     russian: "Таблица очков",
-    sections: [],
+    sections: ["Scoring Reference", "Table 1: Points Below the Line (Contract Points)", "Tables 2 & 3: Points Above the Line (Bonuses)"],
     warnings: [],
   },
 ];
@@ -266,9 +266,7 @@ function findSections(titles: string[]) {
                 ) : (
                   <div class="flex h-40 items-center justify-center rounded-lg border border-dashed">
                     <p class="text-sm text-muted-foreground">
-                      {scan.label === "Scoring Reference"
-                        ? "Scoring tables are not included in the bidding system transcription."
-                        : "No matching transcription section found."}
+                      No matching transcription section found.
                     </p>
                   </div>
                 )}
