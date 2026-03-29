@@ -10,20 +10,17 @@ permissions:
   issues: write
 
 jobs:
-  auto-label-new:
-    if: github.event.action == 'opened'
+  manage-labels:
     runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Add "status: new" label
+        if: github.event.action == 'opened'
         run: gh issue edit ${{ github.event.issue.number }} --add-label "status: new" --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  auto-label-closed:
-    if: github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Remove status labels and add "status: verified"
+      - name: Remove status labels and add "status: verified" on close
+        if: github.event.action == 'closed'
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "status: new" \
@@ -33,14 +30,9 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} \
             --add-label "status: verified" \
             --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  auto-label-reopened:
-    if: github.event.action == 'reopened'
-    runs-on: ubuntu-latest
-    steps:
       - name: Set "status: in-progress" on reopen
+        if: github.event.action == 'reopened'
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "status: verified" \
@@ -49,17 +41,12 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} \
             --add-label "status: in-progress" \
             --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  auto-label-on-comment:
-    if: >
-      github.event.action == 'created' &&
-      github.event.issue.state == 'open' &&
-      contains(github.event.comment.body, '[qa-pass]')
-    runs-on: ubuntu-latest
-    steps:
       - name: QA passed - set "status: verified"
+        if: >
+          github.event.action == 'created' &&
+          github.event.issue.state == 'open' &&
+          contains(github.event.comment.body, '[qa-pass]')
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "status: in-progress" \
@@ -69,17 +56,12 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} \
             --add-label "status: verified" \
             --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  auto-label-qa-needed:
-    if: >
-      github.event.action == 'created' &&
-      github.event.issue.state == 'open' &&
-      contains(github.event.comment.body, '[qa-needed]')
-    runs-on: ubuntu-latest
-    steps:
       - name: Request QA - set "status: qa-needed"
+        if: >
+          github.event.action == 'created' &&
+          github.event.issue.state == 'open' &&
+          contains(github.event.comment.body, '[qa-needed]')
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "status: in-progress" \
@@ -88,17 +70,12 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} \
             --add-label "status: qa-needed" \
             --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  auto-label-in-progress:
-    if: >
-      github.event.action == 'created' &&
-      github.event.issue.state == 'open' &&
-      contains(github.event.comment.body, '[in-progress]')
-    runs-on: ubuntu-latest
-    steps:
       - name: Work started - set "status: in-progress"
+        if: >
+          github.event.action == 'created' &&
+          github.event.issue.state == 'open' &&
+          contains(github.event.comment.body, '[in-progress]')
         run: |
           gh issue edit ${{ github.event.issue.number }} \
             --remove-label "status: new" \
@@ -107,5 +84,3 @@ jobs:
           gh issue edit ${{ github.event.issue.number }} \
             --add-label "status: in-progress" \
             --repo ${{ github.repository }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
