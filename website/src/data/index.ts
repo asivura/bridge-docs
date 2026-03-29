@@ -8,7 +8,8 @@ import {
   parseDifferencesMarkdown,
 } from '../lib/markdown-parser';
 
-export type { BiddingEntry, BiddingSection, ComparisonEntry, ComparisonSection, KeyDifference } from './types';
+export type { BiddingEntry, BiddingSection, GenericTable, GenericTableEntry, SystemSection, ComparisonEntry, ComparisonSection, KeyDifference } from './types';
+export { isBiddingSection, isGenericTable } from './types';
 
 export const ourSystemSections = parseSystemMarkdown(systemMd);
 export const saycSystemSections = parseSystemMarkdown(saycSystemMd);

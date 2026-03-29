@@ -1,6 +1,6 @@
 ---
 import PrintLayout from "@/layouts/PrintLayout.astro";
-import { saycSystemSections } from "@/data/index";
+import { saycSystemSections, isBiddingSection } from "@/data/index";
 import { diffExplanations, type DiffExplanation } from "@/data/difference-explanations";
 
 // Map SAYC-SYSTEM.md section titles to diffExplanation section names
@@ -60,24 +60,41 @@ const minorCount = diffExplanations.filter(d => d.severity === 'minor').length;
       <div class="print-grid-item">
         <div class="print-section-block">
           <div class="print-section-header">{section.title}</div>
-          <table class="print-table">
-            <thead>
-              <tr>
-                <th style="width: 30%">Bid</th>
-                <th style="width: 15%">HCP</th>
-                <th style="width: 55%">Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              {section.entries.map((entry) => (
+          {isBiddingSection(section) ? (
+            <table class="print-table">
+              <thead>
                 <tr>
-                  <td set:html={formatBid(entry.bid)} />
-                  <td>{entry.hcp}</td>
-                  <td set:html={formatBid(entry.description)} />
+                  <th style="width: 30%">Bid</th>
+                  <th style="width: 15%">HCP</th>
+                  <th style="width: 55%">Description</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {section.entries.map((entry) => (
+                  <tr>
+                    <td set:html={formatBid(entry.bid)} />
+                    <td>{entry.hcp}</td>
+                    <td set:html={formatBid(entry.description)} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <table class="print-table">
+              <thead>
+                <tr>
+                  {section.headers.map((h) => <th>{h}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {section.rows.map((row) => (
+                  <tr>
+                    {row.cells.map((cell) => <td set:html={formatBid(cell)} />)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
 
           {(() => {
             const annotations = getAnnotations(section.title);

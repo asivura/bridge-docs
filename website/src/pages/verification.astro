@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
-import { ourSystemSections } from "@/data/index";
+import { GenericTableView } from "@/components/GenericTableView";
+import { ourSystemSections, isBiddingSection } from "@/data/index";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
 import { Separator } from "@/components/ui/separator";
 import "@/styles/global.css";
@@ -180,10 +181,10 @@ for (const s of scanSections) {
   scanByPage.get(key)!.push(s);
 }
 
-// Look up sections by title
+// Look up sections by title (exact match or prefix match for sub-sections)
 function findSections(titles: string[]) {
   return titles
-    .map((t) => ourSystemSections.find((s) => s.title === t))
+    .flatMap((t) => ourSystemSections.filter((s) => s.title === t || s.title.startsWith(t + ':')))
     .filter((s): s is NonNullable<typeof s> => s != null);
 }
 ---
@@ -292,7 +293,11 @@ function findSections(titles: string[]) {
                   <div class="space-y-4">
                     {matched.map((section) => (
                       <div class="overflow-x-auto">
-                        <BiddingTable title={section.title} entries={section.entries} />
+                        {isBiddingSection(section) ? (
+                          <BiddingTable title={section.title} entries={section.entries} />
+                        ) : (
+                          <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+                        )}
                       </div>
                     ))}
                   </div>

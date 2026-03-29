@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
+import { GenericTableView } from "@/components/GenericTableView";
 import TableOfContents from "@/components/TableOfContents.astro";
-import { ourSystemSections } from "@/data/index";
+import { ourSystemSections, isBiddingSection } from "@/data/index";
 import "@/styles/global.css";
 
 // Group sections by page reference
@@ -38,7 +39,11 @@ const tocItems = ourSystemSections.map((s) => ({
               data-toc-target
               class="overflow-x-auto scroll-mt-4"
             >
-              <BiddingTable title={section.title} entries={section.entries} />
+              {isBiddingSection(section) ? (
+                <BiddingTable title={section.title} entries={section.entries} />
+              ) : (
+                <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+              )}
             </div>
           ))}
         </div>

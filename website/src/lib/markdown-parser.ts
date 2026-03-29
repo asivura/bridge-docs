@@ -3,7 +3,9 @@ import type {
   BiddingSection,
   ComparisonEntry,
   ComparisonSection,
+  GenericTable,
   KeyDifference,
+  SystemSection,
 } from '../data/types';
 
 // ============ Generic table parsing ============
@@ -57,6 +59,75 @@ function extractTables(content: string): ParsedTable[] {
     }
   }
   return tables;
+}
+
+// ============ Table extraction with context headers ============
+
+interface ParsedTableWithContext {
+  subTitle?: string;
+  table: ParsedTable;
+}
+
+/** Extract tables along with their nearest preceding h4 or bold label. */
+function extractTablesWithContext(content: string): ParsedTableWithContext[] {
+  const lines = content.split('\n');
+  const results: ParsedTableWithContext[] = [];
+  let i = 0;
+  let currentH4: string | undefined;
+  let currentLabel: string | undefined;
+
+  while (i < lines.length) {
+    const line = lines[i].trim();
+
+    const h4 = line.match(/^####\s+(.+)/);
+    if (h4) {
+      currentH4 = h4[1].trim();
+      currentLabel = undefined;
+      i++;
+      continue;
+    }
+
+    const bold = line.match(/^\*\*(.+?):\*\*$/);
+    if (bold) {
+      currentLabel = bold[1].trim();
+      i++;
+      continue;
+    }
+
+    if (line.startsWith('|') && line.endsWith('|')) {
+      const block: string[] = [];
+      while (i < lines.length && lines[i].trim().startsWith('|') && lines[i].trim().endsWith('|')) {
+        block.push(lines[i].trim());
+        i++;
+      }
+      if (block.length >= 3) {
+        const headers = parseTableRow(block[0]);
+        let dataStart = 2;
+        for (let j = 1; j < block.length; j++) {
+          if (isSeparator(block[j])) {
+            dataStart = j + 1;
+            break;
+          }
+        }
+
+        let subTitle: string | undefined;
+        if (currentH4 && currentLabel) {
+          subTitle = `${currentH4}: ${currentLabel}`;
+        } else {
+          subTitle = currentH4 || currentLabel;
+        }
+
+        results.push({
+          subTitle,
+          table: { headers, rows: block.slice(dataStart).map(parseTableRow) },
+        });
+        currentLabel = undefined;
+      }
+    } else {
+      i++;
+    }
+  }
+  return results;
 }
 
 // ============ Section splitting ============
@@ -163,9 +234,9 @@ function isSelfDescriptive(title: string): boolean {
   return /[♣♦♥♠]|NT|After|\d/.test(title);
 }
 
-export function parseSystemMarkdown(md: string): BiddingSection[] {
+export function parseSystemMarkdown(md: string): SystemSection[] {
   const sections = splitSections(md);
-  const result: BiddingSection[] = [];
+  const result: SystemSection[] = [];
   let parentPage: string | undefined;
   let parentTitle: string | undefined;
   let skipParent = false;
@@ -178,16 +249,36 @@ export function parseSystemMarkdown(md: string): BiddingSection[] {
     }
     if (skipParent || SKIP_SYSTEM.has(sec.title)) continue;
 
-    const tables = extractTables(sec.content);
-    const entries: BiddingEntry[] = [];
-    for (const t of tables) entries.push(...parseSystemTable(t));
+    const tablesWithContext = extractTablesWithContext(sec.content);
+    const biddingEntries: BiddingEntry[] = [];
+    const genericTables: { subTitle?: string; table: ParsedTable }[] = [];
 
-    if (entries.length > 0) {
-      let title = sec.title;
-      if (sec.level === 3 && parentTitle && !isSelfDescriptive(title)) {
-        title = `${parentTitle}: ${title}`;
+    for (const { subTitle, table } of tablesWithContext) {
+      const entries = parseSystemTable(table);
+      if (entries.length > 0) {
+        biddingEntries.push(...entries);
+      } else if (table.headers.length >= 3) {
+        genericTables.push({ subTitle, table });
       }
-      result.push({ title, page: sec.page || parentPage, entries });
+    }
+
+    let title = sec.title;
+    if (sec.level === 3 && parentTitle && !isSelfDescriptive(title)) {
+      title = `${parentTitle}: ${title}`;
+    }
+    const page = sec.page || parentPage;
+
+    if (biddingEntries.length > 0) {
+      result.push({ title, page, entries: biddingEntries });
+    }
+
+    for (const { subTitle, table } of genericTables) {
+      result.push({
+        title: subTitle ? `${title}: ${subTitle}` : title,
+        page,
+        headers: table.headers,
+        rows: table.rows.map((cells) => ({ cells })),
+      } satisfies GenericTable);
     }
   }
   return result;

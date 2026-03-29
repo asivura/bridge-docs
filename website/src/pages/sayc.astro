@@ -1,8 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
+import { GenericTableView } from "@/components/GenericTableView";
 import TableOfContents from "@/components/TableOfContents.astro";
-import { saycSystemSections } from "@/data/index";
+import { saycSystemSections, isBiddingSection } from "@/data/index";
 import "@/styles/global.css";
 
 const tocItems = saycSystemSections.map((s) => ({
@@ -27,7 +28,11 @@ const tocItems = saycSystemSections.map((s) => ({
           data-toc-target
           class="overflow-x-auto scroll-mt-4"
         >
-          <BiddingTable title={section.title} entries={section.entries} />
+          {isBiddingSection(section) ? (
+            <BiddingTable title={section.title} entries={section.entries} />
+          ) : (
+            <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+          )}
         </div>
       ))}
     </div>

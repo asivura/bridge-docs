@@ -10,6 +10,27 @@ export interface BiddingSection {
   entries: BiddingEntry[];
 }
 
+export interface GenericTableEntry {
+  cells: string[];
+}
+
+export interface GenericTable {
+  title: string;
+  page?: string;
+  headers: string[];
+  rows: GenericTableEntry[];
+}
+
+export type SystemSection = BiddingSection | GenericTable;
+
+export function isBiddingSection(s: SystemSection): s is BiddingSection {
+  return 'entries' in s;
+}
+
+export function isGenericTable(s: SystemSection): s is GenericTable {
+  return 'headers' in s && 'rows' in s;
+}
+
 export interface ComparisonEntry {
   bid: string;
   ourHcp: string;
