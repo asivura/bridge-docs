@@ -1,0 +1,111 @@
+name: Issue Status Automation
+
+on:
+  issues:
+    types: [opened, closed, reopened]
+  issue_comment:
+    types: [created]
+
+permissions:
+  issues: write
+
+jobs:
+  auto-label-new:
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add "status: new" label
+        run: gh issue edit ${{ github.event.issue.number }} --add-label "status: new" --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-label-closed:
+    if: github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove status labels and add "status: verified"
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "status: new" \
+            --remove-label "status: in-progress" \
+            --remove-label "status: qa-needed" \
+            --repo ${{ github.repository }} 2>/dev/null || true
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label "status: verified" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-label-reopened:
+    if: github.event.action == 'reopened'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set "status: in-progress" on reopen
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "status: verified" \
+            --remove-label "status: new" \
+            --repo ${{ github.repository }} 2>/dev/null || true
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label "status: in-progress" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-label-on-comment:
+    if: >
+      github.event.action == 'created' &&
+      github.event.issue.state == 'open' &&
+      contains(github.event.comment.body, '[qa-pass]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: QA passed - set "status: verified"
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "status: in-progress" \
+            --remove-label "status: qa-needed" \
+            --remove-label "status: new" \
+            --repo ${{ github.repository }} 2>/dev/null || true
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label "status: verified" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-label-qa-needed:
+    if: >
+      github.event.action == 'created' &&
+      github.event.issue.state == 'open' &&
+      contains(github.event.comment.body, '[qa-needed]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request QA - set "status: qa-needed"
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "status: in-progress" \
+            --remove-label "status: new" \
+            --repo ${{ github.repository }} 2>/dev/null || true
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label "status: qa-needed" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  auto-label-in-progress:
+    if: >
+      github.event.action == 'created' &&
+      github.event.issue.state == 'open' &&
+      contains(github.event.comment.body, '[in-progress]')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Work started - set "status: in-progress"
+        run: |
+          gh issue edit ${{ github.event.issue.number }} \
+            --remove-label "status: new" \
+            --remove-label "status: qa-needed" \
+            --repo ${{ github.repository }} 2>/dev/null || true
+          gh issue edit ${{ github.event.issue.number }} \
+            --add-label "status: in-progress" \
+            --repo ${{ github.repository }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
