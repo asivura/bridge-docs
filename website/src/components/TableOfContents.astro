@@ -1,0 +1,58 @@
+---
+interface TocItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  items: TocItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav class="toc-sidebar hidden w-56 shrink-0 xl:block">
+  <div class="sticky top-8">
+    <h2 class="mb-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+      On this page
+    </h2>
+    <ul class="space-y-1 border-l text-sm">
+      {items.map((item) => (
+        <li>
+          <a
+            href={`#${item.id}`}
+            class="toc-link -ml-px block border-l-2 border-transparent py-1 pl-3 text-muted-foreground transition-colors hover:border-border hover:text-foreground"
+            data-toc-id={item.id}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          document.querySelectorAll('.toc-link').forEach((link) => {
+            const isActive = link.getAttribute('data-toc-id') === id;
+            link.classList.toggle('border-primary', isActive);
+            link.classList.toggle('text-foreground', isActive);
+            link.classList.toggle('font-medium', isActive);
+            link.classList.toggle('border-transparent', !isActive);
+            link.classList.toggle('text-muted-foreground', !isActive);
+          });
+        }
+      }
+    },
+    { rootMargin: '-10% 0px -80% 0px' }
+  );
+
+  document.querySelectorAll('[data-toc-target]').forEach((section) => {
+    observer.observe(section);
+  });
+</script>

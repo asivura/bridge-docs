@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
+import TableOfContents from "@/components/TableOfContents.astro";
 import { ourSystemSections } from "@/data/index";
 import "@/styles/global.css";
 
@@ -11,6 +12,11 @@ for (const section of ourSystemSections) {
   if (!grouped.has(key)) grouped.set(key, []);
   grouped.get(key)!.push(section);
 }
+
+const tocItems = ourSystemSections.map((s) => ({
+  id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+  label: s.title,
+}));
 ---
 
 <BaseLayout title="Our System">
@@ -21,34 +27,24 @@ for (const section of ourSystemSections) {
     </p>
   </div>
 
-  <nav class="mt-6 rounded-lg border p-4">
-    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
-      Sections
-    </h2>
-    <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
-      {ourSystemSections.map((section) => (
-        <li>
-          <a
-            href={`#${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-            class="text-primary underline-offset-4 hover:underline"
-          >
-            {section.title}
-          </a>
-        </li>
+  <div class="mt-8 flex gap-8">
+    <div class="min-w-0 flex-1 space-y-10">
+      {Array.from(grouped.entries()).map(([page, sections]) => (
+        <div class="space-y-8">
+          <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
+          {sections.map((section) => (
+            <div
+              id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+              data-toc-target
+              class="overflow-x-auto scroll-mt-4"
+            >
+              <BiddingTable title={section.title} entries={section.entries} />
+            </div>
+          ))}
+        </div>
       ))}
-    </ul>
-  </nav>
+    </div>
 
-  <div class="mt-8 space-y-10">
-    {Array.from(grouped.entries()).map(([page, sections]) => (
-      <div class="space-y-8">
-        <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
-        {sections.map((section) => (
-          <div id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")} class="overflow-x-auto">
-            <BiddingTable title={section.title} entries={section.entries} />
-          </div>
-        ))}
-      </div>
-    ))}
+    <TableOfContents items={tocItems} />
   </div>
 </BaseLayout>
