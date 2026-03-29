@@ -68,7 +68,7 @@ const minorCount = diffExplanations.filter(d => d.severity === 'minor').length;
       <div class:list={["print-grid-item", groupIdx > 1 && ""]}>
         <div class="print-page-header">{page}</div>
         {sections.map((section) => (
-          <div>
+          <div class="print-section-block">
             <div class="print-section-header">{section.title}</div>
             <table class="print-table">
               <thead>

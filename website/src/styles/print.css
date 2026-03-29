@@ -71,15 +71,19 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Two-column grid for dense layout */
+/* Single-column flow for clean page breaks */
 .print-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  display: block;
 }
 
 .print-grid-item {
   break-inside: avoid;
+}
+
+/* Each section (header + table) stays together */
+.print-section-block {
+  break-inside: avoid;
+  margin-bottom: 12px;
 }
 
 /* Annotation boxes for SAYC diff annotations */
@@ -156,8 +160,12 @@
     break-after: avoid;
   }
 
+  .print-section-block {
+    break-inside: avoid;
+  }
+
   .print-table {
-    break-inside: auto;
+    break-inside: avoid;
   }
 
   .print-table tr {
