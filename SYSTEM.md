@@ -489,13 +489,29 @@ When responder bids 2NT(!) asking about opener's short suit:
 | Non-vulnerable | Trick value | 100 | 200 |
 | Vulnerable | Trick value | 200 | 400 |
 
-#### Undertrick Penalties
+#### Undertrick Penalties (Cumulative Totals)
 
-| Undertricks | Non-Vul: Undbl/Dbl/Rdbl | Vulnerable: Undbl/Dbl/Rdbl |
-|-------------|-------------------------|----------------------------|
-| 1st | 50 / 100 / 200 | 100 / 200 / 400 |
-| 2nd & 3rd | 50 / 200 / 300 | 100 / 300 / 600 |
-| 4th+ | 50 / 300 / 600 | 100 / 300 / 600 |
+**Not Vulnerable:**
+
+| Down | Undoubled | Doubled | Redoubled |
+|------|-----------|---------|-----------|
+| 1 | 50 | 100 | 200 |
+| 2 | 100 | 300 | 600 |
+| 3 | 150 | 500 | 1000 |
+| 4 | 200 | 800 | 1600 |
+| 5 | 250 | 1100 | 2200 |
+| 6 | 300 | 1400 | 2800 |
+
+**Vulnerable:**
+
+| Down | Undoubled | Doubled | Redoubled |
+|------|-----------|---------|-----------|
+| 1 | 100 | 200 | 400 |
+| 2 | 200 | 500 | 1000 |
+| 3 | 300 | 800 | 1600 |
+| 4 | 400 | 1100 | 2200 |
+| 5 | 500 | 1400 | 2800 |
+| 6 | 600 | 1700 | 3400 |
 
 #### Slam Bonuses
 

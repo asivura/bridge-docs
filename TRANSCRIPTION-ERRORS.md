@@ -420,7 +420,9 @@ The doc says "GF" at 12-14 HCP, which is unusual (game force at minimum opening 
 
 ## Pages 11-12 (IMG_3958.jpg, IMG_3959.jpg) -- Weak Suit Asking and Scoring
 
-**No errors found.** All Weak Suit Asking rows and all scoring values are correctly transcribed.
+**Weak Suit Asking:** No errors found.
+
+**Scoring (Page 12):** The undertrick penalty table was incomplete. The original transcription used a 3-row per-trick rate format (1st / 2nd-3rd / 4th+) instead of the scan's 6-row cumulative totals for down 1-6. Additionally, the non-vulnerable redoubled per-trick value for 2nd-3rd undertricks was listed as 300 instead of the correct 400. **Fixed:** Replaced with full cumulative penalty tables matching the scan.
 
 ---
 
