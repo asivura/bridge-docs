@@ -7,21 +7,18 @@ const downloads = [
     title: "Our Partnership System",
     description:
       "Complete convention card for our partnership bidding system based on Russian bridge tradition with custom HCP ranges.",
-    printHref: "/bridge-docs/print/our-system/",
     pdfHref: "/bridge-docs/downloads/our-system-convention-card.pdf",
   },
   {
     title: "Standard SAYC",
     description:
       "Clean SAYC convention card reference for use at the table.",
-    printHref: "/bridge-docs/print/sayc/",
     pdfHref: "/bridge-docs/downloads/sayc-convention-card.pdf",
   },
   {
     title: "Transition Guide: Our System → SAYC",
     description:
       "SAYC convention card with detailed annotations explaining every difference from our partnership system. 48 annotated changes with severity levels and practical tips.",
-    printHref: "/bridge-docs/print/transition-guide/",
     pdfHref: "/bridge-docs/downloads/transition-guide.pdf",
   },
 ];
@@ -35,24 +32,18 @@ const downloads = [
     </p>
   </div>
 
-  <div class="mt-8 grid gap-6 sm:grid-cols-2">
+  <div class="mt-8 grid gap-6 sm:grid-cols-3">
     {downloads.map((dl) => (
-      <div class="rounded-lg border bg-card p-6 space-y-4">
-        <div>
+      <div class="rounded-lg border bg-card p-6 flex flex-col">
+        <div class="flex-1">
           <h2 class="text-lg font-semibold">{dl.title}</h2>
           <p class="mt-1 text-sm text-muted-foreground">{dl.description}</p>
         </div>
 
-        <div class="flex flex-col gap-2">
-          <a
-            href={dl.printHref}
-            class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            View Printable Version
-          </a>
+        <div class="mt-4">
           <a
             href={dl.pdfHref}
-            class="inline-flex items-center justify-center rounded-md border bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+            class="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             Download PDF
           </a>
@@ -63,9 +54,7 @@ const downloads = [
 
   <div class="mt-8 rounded-lg border border-border/50 bg-muted/50 p-4 text-sm text-muted-foreground">
     <p>
-      <strong>Note:</strong> PDFs are generated from the latest markdown content.
-      Use the printable versions for the most up-to-date convention cards, or use your browser's
-      "Save as PDF" function from the print preview.
+      <strong>Note:</strong> PDFs are generated from the latest system documentation.
     </p>
   </div>
 </BaseLayout>
