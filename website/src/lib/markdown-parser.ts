@@ -116,27 +116,8 @@ function exactColIdx(headers: string[], ...names: string[]): number {
 
 const SKIP_SYSTEM = new Set([
   'Table of Contents',
-  'Terminology',
   'About This System',
 ]);
-
-function shouldSkipSystem(title: string): boolean {
-  if (SKIP_SYSTEM.has(title)) return true;
-  const l = title.toLowerCase();
-  return (
-    l.includes('scoring') ||
-    l.includes('quick reference') ||
-    l.includes('opening point ranges') ||
-    l.includes('response strength') ||
-    l.includes('key conventions') ||
-    l.includes('overtrick') ||
-    l.includes('undertrick') ||
-    l.includes('slam bonus') ||
-    l.includes('other bonus') ||
-    l.startsWith('table ') ||
-    l.startsWith('tables ')
-  );
-}
 
 function parseSystemTable(table: ParsedTable): BiddingEntry[] {
   const { headers, rows } = table;
@@ -186,9 +167,9 @@ export function parseSystemMarkdown(md: string): BiddingSection[] {
   for (const sec of sections) {
     if (sec.level === 2) {
       parentPage = sec.page;
-      skipParent = shouldSkipSystem(sec.title);
+      skipParent = SKIP_SYSTEM.has(sec.title);
     }
-    if (skipParent || shouldSkipSystem(sec.title)) continue;
+    if (skipParent || SKIP_SYSTEM.has(sec.title)) continue;
 
     const tables = extractTables(sec.content);
     const entries: BiddingEntry[] = [];

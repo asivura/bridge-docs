@@ -6,6 +6,7 @@ const BASE_URL = 'http://localhost:4321/bridge-docs';
 const pages = [
   { url: `${BASE_URL}/print/our-system/`, output: 'public/downloads/our-system-convention-card.pdf' },
   { url: `${BASE_URL}/print/sayc/`, output: 'public/downloads/sayc-convention-card.pdf' },
+  { url: `${BASE_URL}/print/transition-guide/`, output: 'public/downloads/transition-guide.pdf' },
 ];
 
 async function generatePDFs() {

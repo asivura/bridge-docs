@@ -1,0 +1,113 @@
+---
+import PrintLayout from "@/layouts/PrintLayout.astro";
+import { saycSystemSections } from "@/data/index";
+import { diffExplanations, type DiffExplanation } from "@/data/difference-explanations";
+
+// Map SAYC-SYSTEM.md section titles to diffExplanation section names
+const sectionMap: Record<string, string> = {
+  'Opening Bids': 'Opening Bids',
+  'Defense After Opponent\'s Opening': 'Defense & Overcalls',
+  'Ace Asking (4NT)': 'Blackwood (4NT)',
+  'Responses to 1♣': 'Responses to 1♣',
+  'Responses to 1♦': 'Responses to 1♦',
+  'Responses to 1♥': 'Responses to 1♥',
+  'Responses to 1♠': 'Responses to 1♠',
+  'Responses to 1NT': 'Responses to 1NT',
+  'Jacoby 2NT Convention': 'Jacoby 2NT Rebids',
+  'Weak Two Bids': 'Conventions',
+  'Competitive Bidding': 'Conventions',
+};
+
+// Build lookup: section title → matching explanations
+function getAnnotations(title: string): DiffExplanation[] {
+  const diffSection = sectionMap[title];
+  if (!diffSection) return [];
+  if (diffSection === 'Conventions') {
+    const keyword = title.toLowerCase();
+    return diffExplanations.filter(
+      (d) => d.section === 'Conventions' && d.bid.toLowerCase().includes(keyword.split(' ')[0])
+    );
+  }
+  return diffExplanations.filter((d) => d.section === diffSection);
+}
+
+// Group sections by page reference
+const grouped = new Map<string, typeof saycSystemSections>();
+for (const section of saycSystemSections) {
+  const key = section.page || "Other";
+  if (!grouped.has(key)) grouped.set(key, []);
+  grouped.get(key)!.push(section);
+}
+
+// Helper to colorize suit symbols
+function formatBid(text: string): string {
+  return text
+    .replace(/♠/g, '<span class="suit-spade">♠</span>')
+    .replace(/♣/g, '<span class="suit-club">♣</span>')
+    .replace(/♥/g, '<span class="suit-heart">♥</span>')
+    .replace(/♦/g, '<span class="suit-diamond">♦</span>');
+}
+
+const criticalCount = diffExplanations.filter(d => d.severity === 'critical').length;
+const moderateCount = diffExplanations.filter(d => d.severity === 'moderate').length;
+const minorCount = diffExplanations.filter(d => d.severity === 'minor').length;
+---
+
+<PrintLayout title="Transition Guide: Our System → SAYC">
+  <div style="margin-bottom: 1.5em; padding: 0.75em; border: 1px solid #333; font-size: 0.85em;">
+    <strong>How to read this guide:</strong> Each section shows the SAYC bidding table followed by
+    annotations explaining what changed from our partnership system. Annotations are color-coded:
+    <span class="annotation-box annotation-critical" style="display: inline; padding: 0.1em 0.4em; font-size: 0.8em;">critical</span> = would cause a disaster if forgotten,
+    <span class="annotation-box annotation-moderate" style="display: inline; padding: 0.1em 0.4em; font-size: 0.8em;">moderate</span> = could cause confusion,
+    <span class="annotation-box annotation-minor" style="display: inline; padding: 0.1em 0.4em; font-size: 0.8em;">minor</span> = rarely matters.
+    Total: {criticalCount} critical, {moderateCount} moderate, {minorCount} minor differences.
+  </div>
+
+  <div class="print-grid">
+    {Array.from(grouped.entries()).map(([page, sections], groupIdx) => (
+      <div class:list={["print-grid-item", groupIdx > 1 && ""]}>
+        <div class="print-page-header">{page}</div>
+        {sections.map((section) => (
+          <div>
+            <div class="print-section-header">{section.title}</div>
+            <table class="print-table">
+              <thead>
+                <tr>
+                  <th style="width: 30%">Bid</th>
+                  <th style="width: 15%">HCP</th>
+                  <th style="width: 55%">Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {section.entries.map((entry) => (
+                  <tr>
+                    <td set:html={formatBid(entry.bid)} />
+                    <td>{entry.hcp}</td>
+                    <td set:html={formatBid(entry.description)} />
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {(() => {
+              const annotations = getAnnotations(section.title);
+              return annotations.length > 0 && (
+                <div class="diff-annotations-container">
+                  {annotations.map((d) => (
+                    <div class={`annotation-box annotation-${d.severity}`}>
+                      <span class="annotation-label">{d.severity}</span>
+                      {' '}
+                      <strong set:html={formatBid(d.bid)} />:
+                      {' '}{d.whatChanged}
+                      {' '}<em>{d.practicalTip}</em>
+                    </div>
+                  ))}
+                </div>
+              );
+            })()}
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</PrintLayout>
