@@ -35,6 +35,7 @@ See [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) for complete details.
 | [SAYC-CONVENTION-CARD.md](SAYC-CONVENTION-CARD.md) | SAYC reference in convention card format |
 | [TRANSCRIPTION-ERRORS.md](TRANSCRIPTION-ERRORS.md) | Scan vs documentation error report (24 errors, 19 fixed) |
 | [REFERENCES.md](REFERENCES.md) | Learning resources and related systems |
+| [Resources](https://asivura.github.io/bridge-docs/resources/) | Curated educational resources for learning SAYC |
 | `system-scans/` | Original scanned system cards (Russian) |
 
 ### Project Documents

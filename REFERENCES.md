@@ -2,6 +2,8 @@
 
 Resources and similar systems for comparison and further learning.
 
+For a comprehensive guide with 40+ curated resources, see the [Resources page](https://asivura.github.io/bridge-docs/resources/) on our website.
+
 ---
 
 ## System Identification
