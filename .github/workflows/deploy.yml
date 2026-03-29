@@ -36,6 +36,19 @@ jobs:
         working-directory: website
         run: npm run build
 
+      - name: Install Playwright Chromium
+        working-directory: website
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate PDFs
+        working-directory: website
+        run: |
+          npm run preview &
+          sleep 3
+          npm run generate-pdfs
+          kill %1
+          cp -r public/downloads dist/downloads
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
