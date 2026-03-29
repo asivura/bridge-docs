@@ -2,14 +2,6 @@
 import PrintLayout from "@/layouts/PrintLayout.astro";
 import { saycSystemSections } from "@/data/index";
 
-// Group sections by page reference
-const grouped = new Map<string, typeof saycSystemSections>();
-for (const section of saycSystemSections) {
-  const key = section.page || "Other";
-  if (!grouped.has(key)) grouped.set(key, []);
-  grouped.get(key)!.push(section);
-}
-
 // Helper to colorize suit symbols
 function formatBid(text: string): string {
   return text
@@ -22,32 +14,29 @@ function formatBid(text: string): string {
 
 <PrintLayout title="Standard SAYC — Convention Card">
   <div class="print-grid">
-    {Array.from(grouped.entries()).map(([page, sections], groupIdx) => (
-      <div class:list={["print-grid-item", groupIdx > 1 && ""]}>
-        <div class="print-page-header">{page}</div>
-        {sections.map((section) => (
-          <div class="print-section-block">
-            <div class="print-section-header">{section.title}</div>
-            <table class="print-table">
-              <thead>
+    {saycSystemSections.map((section) => (
+      <div class="print-grid-item">
+        <div class="print-section-block">
+          <div class="print-section-header">{section.title}</div>
+          <table class="print-table">
+            <thead>
+              <tr>
+                <th style="width: 30%">Bid</th>
+                <th style="width: 15%">HCP</th>
+                <th style="width: 55%">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {section.entries.map((entry) => (
                 <tr>
-                  <th style="width: 30%">Bid</th>
-                  <th style="width: 15%">HCP</th>
-                  <th style="width: 55%">Description</th>
+                  <td set:html={formatBid(entry.bid)} />
+                  <td>{entry.hcp}</td>
+                  <td set:html={formatBid(entry.description)} />
                 </tr>
-              </thead>
-              <tbody>
-                {section.entries.map((entry) => (
-                  <tr>
-                    <td set:html={formatBid(entry.bid)} />
-                    <td>{entry.hcp}</td>
-                    <td set:html={formatBid(entry.description)} />
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     ))}
   </div>
