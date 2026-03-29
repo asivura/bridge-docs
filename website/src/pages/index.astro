@@ -1,0 +1,105 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { SystemCard } from "@/components/SystemCard";
+import { DiffBadge } from "@/components/DiffBadge";
+import { keyDifferences } from "@/data/index";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import "@/styles/global.css";
+---
+
+<BaseLayout title="Home">
+  <section class="space-y-4 text-center">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl">
+      Bridge Bidding Systems
+    </h1>
+    <p class="mx-auto max-w-2xl text-lg text-muted-foreground">
+      Documentation for our partnership bidding system, Standard American Yellow Card (SAYC),
+      and a detailed comparison of the two.
+    </p>
+  </section>
+
+  <section class="mt-12 grid gap-6 sm:grid-cols-2">
+    <SystemCard
+      title="Our Partnership System"
+      description="Custom agreements based on Russian bridge tradition with specific HCP ranges and conventions."
+      features={[
+        "1-level openings: 12-19 HCP",
+        "Strong 2♦/2♥/2♠ openings (20-22 HCP)",
+        "Modified Blackwood responses",
+        "2-level overcalls from 8 HCP",
+      ]}
+      href="/bridge-docs/our-system/"
+    />
+    <SystemCard
+      title="Standard SAYC"
+      description="Standard American Yellow Card, the most common partnership agreement in online bridge."
+      features={[
+        "1-level openings: 13-21 HCP",
+        "Weak 2♦/2♥/2♠ openings (5-11 HCP)",
+        "Standard Blackwood 0/4 aces",
+        "2-level overcalls from 10 HCP",
+      ]}
+      href="/bridge-docs/sayc/"
+    />
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="text-2xl font-bold tracking-tight">Key Differences</h2>
+    <p class="text-muted-foreground">
+      The most important areas where our system diverges from standard SAYC.
+    </p>
+    <div class="overflow-x-auto">
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-10">#</TableHead>
+            <TableHead>Feature</TableHead>
+            <TableHead>Our System</TableHead>
+            <TableHead>SAYC</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {keyDifferences.map((d) => (
+            <TableRow>
+              <TableCell className="font-medium">{d.number}</TableCell>
+              <TableCell className="font-medium">{d.title}</TableCell>
+              <TableCell>{d.ourValue}</TableCell>
+              <TableCell>{d.saycValue}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </div>
+  </section>
+
+  <section class="mt-12 space-y-4">
+    <h2 class="text-2xl font-bold tracking-tight">Explore</h2>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <a
+        href="/bridge-docs/comparison/"
+        class="rounded-lg border p-4 transition-colors hover:bg-muted"
+      >
+        <h3 class="font-semibold">Side-by-Side Comparison</h3>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Every bid compared with difference badges showing HCP, description, or both changes.
+        </p>
+      </a>
+      <a
+        href="/bridge-docs/differences/"
+        class="rounded-lg border p-4 transition-colors hover:bg-muted"
+      >
+        <h3 class="font-semibold">Differences Summary</h3>
+        <p class="mt-1 text-sm text-muted-foreground">
+          Detailed explanations of each key difference between the two systems.
+        </p>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

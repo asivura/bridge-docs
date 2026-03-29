@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { BiddingTable } from "@/components/BiddingTable";
+import { ourSystemSections } from "@/data/index";
+import "@/styles/global.css";
+
+// Group sections by page reference
+const grouped = new Map<string, typeof ourSystemSections>();
+for (const section of ourSystemSections) {
+  const key = section.page || "Other";
+  if (!grouped.has(key)) grouped.set(key, []);
+  grouped.get(key)!.push(section);
+}
+---
+
+<BaseLayout title="Our System">
+  <div class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight">Our Partnership System</h1>
+    <p class="text-muted-foreground">
+      Full bidding system based on Russian bridge tradition with custom HCP ranges and conventions.
+    </p>
+  </div>
+
+  <nav class="mt-6 rounded-lg border p-4">
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+      Sections
+    </h2>
+    <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      {ourSystemSections.map((section) => (
+        <li>
+          <a
+            href={`#${section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+            class="text-primary underline-offset-4 hover:underline"
+          >
+            {section.title}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="mt-8 space-y-10">
+    {Array.from(grouped.entries()).map(([page, sections]) => (
+      <div class="space-y-8">
+        <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
+        {sections.map((section) => (
+          <div id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")} class="overflow-x-auto">
+            <BiddingTable title={section.title} entries={section.entries} />
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
+</BaseLayout>

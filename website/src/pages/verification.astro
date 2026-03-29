@@ -1,0 +1,291 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { BiddingTable } from "@/components/BiddingTable";
+import { ourSystemSections } from "@/data/index";
+import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { Separator } from "@/components/ui/separator";
+import "@/styles/global.css";
+
+// Map scan images to system sections, with Russian headers and crop hints
+const scanSections = [
+  {
+    image: "IMG_3951.jpg",
+    page: 4,
+    label: "Opening Bids",
+    russian: "Открытия",
+    sections: ["Opening Bids"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3951.jpg",
+    page: 4,
+    label: "Defense / Overcalls",
+    russian: "Защита (после открытия оппонентов)",
+    sections: ["Defense After Opponent's Opening"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3952.jpg",
+    page: 5,
+    label: "Stayman Responses",
+    russian: "Стэйман",
+    sections: ["Stayman Responses"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3952.jpg",
+    page: 5,
+    label: "Jacoby Transfers",
+    russian: "Трансфер Якоби",
+    sections: ["Jacoby Transfer Responses", "Direct Responses to 1NT"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3953.jpg",
+    page: 6,
+    label: "1NT Continuations / Blackwood",
+    russian: "1NT продолжения / Блэквуд",
+    sections: ["Slam Invitation Sequence", "Blackwood (4NT) Responses"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3953.jpg",
+    page: 6,
+    label: "Responses to 1♣",
+    russian: "Ответы на 1♣",
+    sections: ["Responses to 1♣"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3954.jpg",
+    page: 7,
+    label: "Responses to 1♦",
+    russian: "Ответы на 1♦",
+    sections: ["Responses to 1♦"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3954.jpg",
+    page: 7,
+    label: "Responses to 1♠",
+    russian: "Ответы на 1♠",
+    sections: ["Responses to 1♠"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3955.jpg",
+    page: 8,
+    label: "Responses to 1♥",
+    russian: "Ответы на 1♥",
+    sections: ["Responses to 1♥"],
+    warnings: [
+      {
+        id: "ERR-20",
+        title: "1♥ - 3♦ HCP may be wrong",
+        description: 'Doc says 10-12, scan may show 13-16. A "GF, SI" bid at 10-12 HCP is unusual. Needs physical card verification.',
+      },
+    ],
+  },
+  {
+    image: "IMG_3955.jpg",
+    page: 8,
+    label: "Responses to 2♣",
+    russian: "Ответы на 2♣",
+    sections: ["Strong 2♣ Opening", "2♣ Opener's Rebids After 2♦ Response"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3956.jpg",
+    page: 9,
+    label: "Opener's Rebids After 1♣ (Part 1)",
+    russian: "Ребиды открывающего после 1♣ (часть 1)",
+    sections: ["After 1♣ - 1♦", "After 1♣ - 1♥"],
+    warnings: [
+      {
+        id: "ERR-21",
+        title: "1♣-1♦ rebids: possible ♦/♣ suit swaps",
+        description: "Suit references in description column may have ♣ and ♦ swapped. Since the opening is 1♣, references should use ♣ not ♦. Needs physical card.",
+      },
+      {
+        id: "ERR-22",
+        title: "1♣-1♥ row 2♣: puzzling description",
+        description: 'Doc says 2♣ rebid shows "4+♠", which is unusual for a club rebid. Scan text is unclear. Needs physical card.',
+      },
+    ],
+  },
+  {
+    image: "IMG_3957.jpg",
+    page: 10,
+    label: "Opener's Rebids After 1♣ (Part 2)",
+    russian: "Ребиды открывающего после 1♣ (часть 2)",
+    sections: ["After 1♣ - 1♠", "After 1♣ - 1NT"],
+    warnings: [
+      {
+        id: "ERR-23",
+        title: "1♣-1NT rebids: possible missing 2♦ row",
+        description: 'Doc shows only a "2♣" row at 12-16. Scan may show two rows (2♣ and 2♦). Description "Pass in M" is unclear. Needs physical card.',
+      },
+    ],
+  },
+  {
+    image: "IMG_3957.jpg",
+    page: 10,
+    label: "Opener's Rebids After 1♦-2♣",
+    russian: "Ребиды после 1♦-2♣",
+    sections: ["After 1♦ - 2♣"],
+    warnings: [
+      {
+        id: "ERR-24",
+        title: "1♦-2♣ row 2NT: GF vs GI",
+        description: 'Doc says "GF" at 12-14 HCP, which is unusual (game force at minimum opening strength). Scan may say "GI" instead. Needs physical card.',
+      },
+    ],
+  },
+  {
+    image: "IMG_3958.jpg",
+    page: 11,
+    label: "Weak Suit Asking Convention",
+    russian: "Вопрос о слабой масти",
+    sections: ["Weak Suit Asking Convention"],
+    warnings: [],
+  },
+  {
+    image: "IMG_3959.jpg",
+    page: 12,
+    label: "Scoring Reference",
+    russian: "Таблица очков",
+    sections: [],
+    warnings: [],
+  },
+];
+
+// Look up sections by title
+function findSections(titles: string[]) {
+  return titles
+    .map((t) => ourSystemSections.find((s) => s.title === t))
+    .filter((s): s is NonNullable<typeof s> => s != null);
+}
+---
+
+<BaseLayout title="Verification">
+  <div class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight">Scan Verification</h1>
+    <p class="text-muted-foreground">
+      Original handwritten convention cards (in Russian) shown alongside
+      the transcribed tables. Use this page to spot-check the transcription
+      against the source material.
+    </p>
+  </div>
+
+  <div class="mt-6 rounded-lg border bg-card p-4">
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+      Jump to Section
+    </h2>
+    <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+      {scanSections.map((s) => (
+        <li>
+          <a
+            href={`#${s.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+            class="text-primary underline-offset-4 hover:underline"
+          >
+            {s.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="mt-4 rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm">
+    <p class="font-medium text-amber-900">
+      5 unverified errors (ERR-20 through ERR-24) are flagged below with warnings.
+      These need the physical convention card to resolve, as scan quality is insufficient.
+    </p>
+  </div>
+
+  <div class="mt-8 space-y-12">
+    {scanSections.map((scan, idx) => {
+      const matched = findSections(scan.sections);
+      return (
+        <>
+          {idx > 0 && <Separator />}
+          <section id={scan.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}>
+            <div class="mb-4">
+              <h2 class="text-xl font-semibold">{scan.label}</h2>
+              <p class="text-sm text-muted-foreground">
+                Page {scan.page} &middot; {scan.image} &middot;
+                <span class="italic">{scan.russian}</span>
+              </p>
+            </div>
+
+            {scan.warnings.length > 0 && (
+              <div class="mb-4 space-y-2">
+                {scan.warnings.map((w) => (
+                  <Alert variant="destructive">
+                    <AlertTitle>{w.id}: {w.title}</AlertTitle>
+                    <AlertDescription>{w.description}</AlertDescription>
+                  </Alert>
+                ))}
+              </div>
+            )}
+
+            <div class="grid gap-6 lg:grid-cols-2">
+              <div class="space-y-2">
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  Original Scan
+                </h3>
+                <a
+                  href={`/bridge-docs/scans/${scan.image}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group block overflow-hidden rounded-lg border"
+                >
+                  <img
+                    src={`/bridge-docs/scans/${scan.image}`}
+                    alt={`Scan of ${scan.label} (${scan.russian})`}
+                    class="w-full transition-transform group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <span class="block bg-muted px-3 py-1.5 text-center text-xs text-muted-foreground">
+                    Click to open full image
+                  </span>
+                </a>
+              </div>
+
+              <div class="space-y-2">
+                <h3 class="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                  Transcription
+                </h3>
+                {matched.length > 0 ? (
+                  <div class="space-y-4">
+                    {matched.map((section) => (
+                      <div class="overflow-x-auto">
+                        <BiddingTable title={section.title} entries={section.entries} />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="flex h-40 items-center justify-center rounded-lg border border-dashed">
+                    <p class="text-sm text-muted-foreground">
+                      {scan.label === "Scoring Reference"
+                        ? "Scoring tables are not included in the bidding system transcription."
+                        : "No matching transcription section found."}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        </>
+      );
+    })}
+  </div>
+
+  <div class="mt-8 text-center">
+    <a
+      href="/bridge-docs/our-system/"
+      class="text-sm font-medium text-primary underline-offset-4 hover:underline"
+    >
+      View complete transcribed system &rarr;
+    </a>
+  </div>
+</BaseLayout>

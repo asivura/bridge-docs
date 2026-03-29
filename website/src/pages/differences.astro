@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { DiffBadge } from "@/components/DiffBadge";
+import { keyDifferences } from "@/data/index";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import "@/styles/global.css";
+---
+
+<BaseLayout title="Differences">
+  <div class="space-y-2">
+    <h1 class="text-3xl font-bold tracking-tight">Key Differences</h1>
+    <p class="text-muted-foreground">
+      The {keyDifferences.length} most important areas where our partnership system
+      diverges from standard SAYC, with detailed explanations.
+    </p>
+  </div>
+
+  <div class="mt-6 flex flex-wrap gap-2">
+    <DiffBadge type="HCP" />
+    <DiffBadge type="DESC" />
+    <DiffBadge type="BOTH" />
+    <DiffBadge type="NEW" />
+  </div>
+
+  <div class="mt-8 space-y-6">
+    {keyDifferences.map((diff) => (
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-3">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+              {diff.number}
+            </span>
+            {diff.title}
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="rounded-lg border p-3">
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                Our System
+              </p>
+              <p class="font-medium">{diff.ourValue}</p>
+            </div>
+            <div class="rounded-lg border p-3">
+              <p class="mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                SAYC
+              </p>
+              <p class="font-medium">{diff.saycValue}</p>
+            </div>
+          </div>
+          {diff.explanation && (
+            <>
+              <Separator />
+              <p class="text-sm text-muted-foreground">{diff.explanation}</p>
+            </>
+          )}
+        </CardContent>
+      </Card>
+    ))}
+  </div>
+
+  <div class="mt-8 text-center">
+    <a
+      href="/bridge-docs/comparison/"
+      class="text-sm font-medium text-primary underline-offset-4 hover:underline"
+    >
+      View full side-by-side comparison &rarr;
+    </a>
+  </div>
+</BaseLayout>

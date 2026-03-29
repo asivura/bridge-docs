@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Bridge bidding system documentation: partnership system vs standard SAYC with side-by-side comparisons" } = Astro.props;
+
+const navLinks = [
+  { href: "/bridge-docs/", label: "Home" },
+  { href: "/bridge-docs/our-system/", label: "Our System" },
+  { href: "/bridge-docs/sayc/", label: "SAYC" },
+  { href: "/bridge-docs/comparison/", label: "Comparison" },
+  { href: "/bridge-docs/differences/", label: "Differences" },
+  { href: "/bridge-docs/verification/", label: "Verification" },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/bridge-docs/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={`${title} | Bridge Bidding Systems`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://asivura.github.io/bridge-docs/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${title} | Bridge Bidding Systems`} />
+    <meta name="twitter:description" content={description} />
+    <title>{title} | Bridge Bidding Systems</title>
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <header class="border-b bg-card">
+      <nav class="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3">
+        <a href="/bridge-docs/" class="text-lg font-bold tracking-tight">
+          Bridge Systems
+        </a>
+        <div class="flex flex-wrap gap-x-4 gap-y-1 text-sm">
+          {navLinks.map(({ href, label }) => (
+            <a
+              href={href}
+              class:list={[
+                "py-1 transition-colors hover:text-foreground",
+                currentPath === href
+                  ? "font-medium text-foreground"
+                  : "text-muted-foreground",
+              ]}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="border-t">
+      <div class="mx-auto max-w-5xl px-4 py-6 text-center text-sm text-muted-foreground">
+        Bridge Bidding Systems Documentation
+      </div>
+    </footer>
+  </body>
+</html>
