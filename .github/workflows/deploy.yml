@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -38,18 +36,7 @@ jobs:
         working-directory: website
         run: npm run build
 
-      - name: Check if PDF sources changed
-        id: pdf-check
-        run: |
-          PDF_DEPS="SYSTEM.md SAYC-SYSTEM.md SAYC-DIFFERENCES.md website/src/pages/print/ website/src/styles/print.css website/src/lib/markdown-parser.ts website/src/data/difference-explanations.ts website/src/data/types.ts website/src/data/index.ts"
-          if git diff --name-only HEAD~1 -- $PDF_DEPS 2>/dev/null | grep -q .; then
-            echo "changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "changed=false" >> $GITHUB_OUTPUT
-          fi
-
       - name: Generate PDFs
-        if: steps.pdf-check.outputs.changed == 'true'
         working-directory: website
         run: |
           pip install weasyprint
