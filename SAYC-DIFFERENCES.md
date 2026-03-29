@@ -1,20 +1,37 @@
 # Differences Between Our System and Standard SAYC
 
-This document lists all verified differences between our partnership bidding system (as documented in the scanned convention cards) and Standard American Yellow Card (SAYC).
+All verified differences between our partnership bidding system (as documented in the scanned convention cards) and Standard American Yellow Card (SAYC).
+
+Full side-by-side comparison of every bid: [SYSTEM-COMPARISON.md](SYSTEM-COMPARISON.md)
 
 ---
 
-## Summary of Differences
+## Difference Inventory
 
-| # | Feature | Our System | SAYC | Page |
-|---|---------|------------|------|------|
-| 1 | Suit opening HCP range | 12-19 | 13-21 | 4 |
-| 2 | 1♣ opening requirements | 5+♣ or 3-3, denies 5M | 3+♣ | 4 |
-| 3 | 2♣ minimum with long suit | 17+ (game in hand) | 22+ or 9 tricks | 4 |
-| 4 | **2♦/2♥/2♠ openings** | **20-22, 5+ suit (strong)** | **5-11, 6+ suit (weak)** | 4 |
-| 5 | Blackwood 5♣ response | 0 aces | 0 or 4 aces | 6 |
-| 6 | Weak Suit Asking | Yes (custom) | No | 11 |
-| 7 | 2-level overcall HCP | 8-16 | 10-16 | 4 |
+| Category | Count |
+|----------|-------|
+| Major structural differences | 8 |
+| Response HCP differences | 22 |
+| Description-only differences | 8 |
+| Conventions only in one system | 10+ |
+| **Total distinct differences** | **40+** |
+
+---
+
+## Major Structural Differences
+
+These are the most important differences. Getting any of these wrong at the table will cause serious bidding problems.
+
+| # | Feature | Our System | SAYC |
+|---|---------|------------|------|
+| 1 | Suit opening HCP range | **12-19** | 13-21 |
+| 2 | 1♣ opening requirements | **5+♣ or 3-3, denies 5M** | 3+♣ |
+| 3 | 2♣ minimum with long suit | **17+ (game in hand)** | 22+ or 9 tricks |
+| 4 | **2♦/2♥/2♠ openings** | **20-22, 5+ suit (strong)** | **5-11, 6+ suit (weak)** |
+| 5 | Blackwood 5♣ response | **0 aces** | 0 or 4 aces |
+| 6 | Blackwood 5NT-6♣ response | **0 kings** | 0 or 4 kings |
+| 7 | Weak Suit Asking | **Yes (custom convention)** | No |
+| 8 | 2-level overcall HCP | **8-16** | 10-16 |
 
 ---
 
@@ -166,6 +183,119 @@ Responder's answers show:
 
 ---
 
+## Response HCP Differences
+
+Beyond the major structural differences above, the two systems use different HCP thresholds for many responses. These are organized by opening bid.
+
+### Responses to 1♣
+
+| Response | Our HCP | SAYC HCP | Impact |
+|----------|---------|----------|--------|
+| 2♦ | **6-10** | 10+ | Much lower; no interest in NT |
+| 2♥ | **6-10** | 10+ | Much lower; no interest in NT |
+| 2♠ | **6-10** | 10+ | Much lower; no interest in NT |
+| 3♣ | **13-15** | 10-12 | Higher; GF instead of limit raise |
+
+### Responses to 1♦
+
+| Response | Our HCP | SAYC HCP | Impact |
+|----------|---------|----------|--------|
+| 2♣ | **6-10** | 10+ | Much lower |
+| 2♥ | **17++** | 10+ | Much higher; SI instead of forcing |
+| 2♠ | **17++** | 10+ | Much higher; SI instead of forcing |
+| 2NT | **13-15** | 11-12 | Higher |
+
+### Responses to 1♥
+
+| Response | Our HCP | Our Meaning | SAYC HCP | SAYC Meaning |
+|----------|---------|-------------|----------|--------------|
+| 1♠ | **6-10** | 4+♠, bounded | 6+ | 4+♠, unbounded |
+| 2♣ | **11++** | 4+♣, no 3+♠ | 10+ | 4+♣, forcing |
+| 2♦ | **11++** | 4+♦, no 3+♠ | 10+ | 4+♦, forcing |
+| 2♥ | **11++** | 4+♥ support | 6-10 | 3+♥ simple raise |
+| 2♠ | **6-10** | 5+♠ weak | 19+ | Jump shift, SI |
+| 3♣ | **17++** | 4+♣, GF, SI | 10-12 | 5+♣, invitational |
+| 3♦ | **17++** | 4+♦, GF, SI | 10-12 | 5+♦, invitational |
+| 3♥ | **17++** | 4+♥, GF, SI | 10-12 | Limit raise |
+| 3♠ | **10-12** | 3+♠, GI | 19+ | Jump shift, SI |
+
+### Responses to 1♠
+
+| Response | Our HCP | Our Meaning | SAYC HCP | SAYC Meaning |
+|----------|---------|-------------|----------|--------------|
+| 2♣ | **6-10** | No 4+, no 3+♠ | 10+ | 4+♣, forcing |
+| 2♦ | **11++** | 4+♦, no 4+♥ | 10+ | 4+♦, forcing |
+| 2♥ | **6-10** | 4+♥, no 3+♠ | 10+ | 5+♥, forcing |
+| 2♠ | **17++** | GF, SI | 6-10 | 3+♠ simple raise |
+| 2NT(!) | **17++** | Jacoby 2NT, 4+♠ | 13+ | Jacoby 2NT, 4+♠ |
+| 3♣ | **17++** | Asks about short suit | 10-12 | 5+♣, invitational |
+| 3♠ | **13-16** | GF, SI | 10-12 | Limit raise |
+
+### Responses to 1NT (after transfers)
+
+| Sequence | Our HCP | SAYC HCP | Impact |
+|----------|---------|----------|--------|
+| PASS over 1NT | **0-6** | 0-7 | Lower max |
+| After transfer: invitational bids | **7-11** | 8-9 | Wider range |
+| After transfer: GF bids | **12++** | 10+ | Higher threshold |
+| After transfer: 3NT | **12-17** | 10-15 | Higher range |
+
+---
+
+## Description-Only Differences
+
+These bids use similar HCP but mean different things:
+
+| # | Sequence | Our System | SAYC |
+|---|----------|------------|------|
+| 1 | 1♣ description | 5+♣ or 3-3, denies 5M | 3+♣ |
+| 2 | Blackwood 5♣ | 0 aces only | 0 or 4 aces |
+| 3 | Blackwood 5NT-6♣ | 0 kings only | 0 or 4 kings |
+| 4 | 1M-2NT-3♣(!) rebid | **Asks about weak suit** | Shows singleton/void in ♣ |
+| 5 | 1M-2NT-3♦(!) rebid | **Shows HCP range (15-17)** | Shows singleton/void in ♦ |
+| 6 | 1M-2NT-3♥(!) rebid | **Shows HCP range (12-14)** | Shows singleton/void in ♥ |
+| 7 | 1M-2NT-4m rebid | Shows short suit info | Shows 5+ card side suit |
+| 8 | 1♠-3♥ | 10-12, 3+♠ GI | 10-12, 5+♥ invitational |
+
+---
+
+## Conventions by System
+
+### In our system only (not in SAYC)
+
+| Convention | Description |
+|------------|-------------|
+| **Strong 2-bids** | 2♦/2♥/2♠ = 20-22 HCP, 5+ suit |
+| **Weak Suit Asking** | After 1M-2NT(!), opener asks about weak suits |
+| **Unambiguous Blackwood** | 5♣ = exactly 0 aces (never 4) |
+
+### In SAYC only (not in our system)
+
+| Convention | Description |
+|------------|-------------|
+| **Weak Two Bids** | 2♦/2♥/2♠ = 5-11 HCP, 6+ suit (preemptive) |
+| **Negative Doubles** | Double of overcall shows unbid suits |
+| **Michaels Cue Bid** | 2-of-opponent's-suit shows 5-5 in two suits |
+| **Unusual 2NT** | 2NT overcall shows 5-5 in lower unbid suits |
+| **Jordan 2NT** | 2NT after opponent's double = limit raise+ |
+| **Limit Raises** | 3M direct = 10-12, 4+ support (invitational) |
+| **Jump Shifts** | 2-level jump in new suit = 19+, strong |
+| **RKCB** | Roman Key Card Blackwood (king of trump = 5th "ace") |
+| **Jacoby 2NT shortness** | After 1M-2NT, new suits show singleton/void |
+
+### Identical in both systems
+
+| Convention | Details |
+|------------|---------|
+| Stayman | 2♣ over 1NT, standard responses |
+| Jacoby Transfers | 2♦ = hearts, 2♥ = spades over 1NT |
+| Texas Transfers | 4♦ = hearts, 4♥ = spades over 1NT |
+| Gerber | 4♣ over 1NT asks for aces |
+| Splinters | Double jump = shortness with support |
+| Preempts | 3-level = 6-10 HCP, 7+ card suit |
+
+---
+
 ## Features Identical to SAYC
 
 The following features are the same as standard SAYC:
@@ -208,5 +338,5 @@ The following features are the same as standard SAYC:
 
 ---
 
-*Document created: January 2026*
-*Based on scanned convention cards (IMG_3951.jpg - IMG_3959.jpg)*
+*Document created: January 2026. Expanded March 2026 with full difference inventory.*
+*Based on scanned convention cards (IMG_3951.jpg - IMG_3959.jpg) and [SYSTEM-COMPARISON.md](SYSTEM-COMPARISON.md)*

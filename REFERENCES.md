@@ -14,7 +14,7 @@ Our system is a **Standard Natural bidding system** with these characteristics:
 | 2♣ opening | 22+ HCP, strong artificial | 22+ HCP |
 | 2NT opening | 20-21 HCP | 20-21 HCP |
 | Major openings | 5+ cards required | 5+ cards |
-| Weak twos | 5-10 HCP, 6-card suit | 5-11 HCP, 6-card |
+| 2♦/♥/♠ openings | **20-22 HCP, 5+ suit (strong)** | 5-11 HCP, 6-card (weak) |
 | Stayman | 2♣ over 1NT | Yes |
 | Transfers | Jacoby (2♦/2♥ over 1NT) | Yes |
 | Ace asking | Blackwood 4NT | Yes |
@@ -137,4 +137,4 @@ Our system is a **Standard Natural bidding system** with these characteristics:
 
 ---
 
-*Last updated: January 2026*
+*Last updated: March 2026*
