@@ -3,14 +3,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
 import { saycSystemSections } from "@/data/index";
 import "@/styles/global.css";
-
-// Group sections by page reference
-const grouped = new Map<string, typeof saycSystemSections>();
-for (const section of saycSystemSections) {
-  const key = section.page || "Other";
-  if (!grouped.has(key)) grouped.set(key, []);
-  grouped.get(key)!.push(section);
-}
 ---
 
 <BaseLayout title="SAYC">
@@ -39,15 +31,10 @@ for (const section of saycSystemSections) {
     </ul>
   </nav>
 
-  <div class="mt-8 space-y-10">
-    {Array.from(grouped.entries()).map(([page, sections]) => (
-      <div class="space-y-8">
-        <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
-        {sections.map((section) => (
-          <div id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")} class="overflow-x-auto">
-            <BiddingTable title={section.title} entries={section.entries} />
-          </div>
-        ))}
+  <div class="mt-8 space-y-8">
+    {saycSystemSections.map((section) => (
+      <div id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")} class="overflow-x-auto">
+        <BiddingTable title={section.title} entries={section.entries} />
       </div>
     ))}
   </div>
