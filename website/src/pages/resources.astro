@@ -423,20 +423,21 @@ const levelBadgeClass: Record<string, string> = {
     </ol>
   </div>
 
-  <!-- Badge legend -->
+  <!-- Badge legend (clickable filters) -->
   <div class="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-    <span class="font-medium">Legend:</span>
+    <span class="font-medium">Filter:</span>
     <span class="flex items-center gap-1.5">
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.website]}>Website</span>
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.book]}>Book</span>
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.app]}>App</span>
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", typeBadgeClass.video]}>Video</span>
+      <button data-filter="type:website" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", typeBadgeClass.website]}>Website</button>
+      <button data-filter="type:book" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", typeBadgeClass.book]}>Book</button>
+      <button data-filter="type:app" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", typeBadgeClass.app]}>App</button>
+      <button data-filter="type:video" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", typeBadgeClass.video]}>Video</button>
     </span>
     <span class="flex items-center gap-1.5">
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass.Free]}>Free</span>
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass.Paid]}>Paid</span>
-      <span class:list={["inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium", costBadgeClass["Free/Paid"]]}>Free/Paid</span>
+      <button data-filter="cost:free" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", costBadgeClass.Free]}>Free</button>
+      <button data-filter="cost:paid" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", costBadgeClass.Paid]}>Paid</button>
+      <button data-filter="cost:free/paid" class:list={["inline-flex cursor-pointer items-center rounded-full border px-2 py-0.5 text-xs font-medium transition-all hover:opacity-80", costBadgeClass["Free/Paid"]]}>Free/Paid</button>
     </span>
+    <button data-filter-clear class="hidden cursor-pointer text-xs font-medium text-primary underline underline-offset-2 hover:text-primary/80">Clear filters</button>
   </div>
 
   <div class="mt-8 flex gap-8">
@@ -446,6 +447,7 @@ const levelBadgeClass: Record<string, string> = {
         <div
           id={section.id}
           data-toc-target
+          data-resource-section
           class="scroll-mt-4"
         >
           <div class="rounded-xl border bg-card shadow-sm">
@@ -457,7 +459,13 @@ const levelBadgeClass: Record<string, string> = {
             </div>
             <div class="divide-y">
               {section.resources.map((r) => (
-                <div class="flex flex-col gap-2 px-6 py-4 sm:flex-row sm:items-start sm:gap-4">
+                <div
+                  data-resource
+                  data-type={r.type}
+                  data-cost={r.cost.toLowerCase().replace("/", "/")}
+                  data-level={r.level.toLowerCase()}
+                  class="flex flex-col gap-2 px-6 py-4 sm:flex-row sm:items-start sm:gap-4"
+                >
                   <div class="min-w-0 flex-1">
                     <div class="flex flex-wrap items-center gap-2">
                       {r.url ? (
@@ -504,4 +512,71 @@ const levelBadgeClass: Record<string, string> = {
       Download printable convention cards &rarr;
     </a>
   </div>
+
+  <script is:inline>
+  (function() {
+    var filters = {};
+    var resources = document.querySelectorAll('[data-resource]');
+    var buttons = document.querySelectorAll('[data-filter]');
+    var clearBtn = document.querySelector('[data-filter-clear]');
+
+    function applyFilters() {
+      resources.forEach(function(el) {
+        var visible = true;
+        for (var key in filters) {
+          if (el.dataset[key] !== filters[key]) {
+            visible = false;
+            break;
+          }
+        }
+        el.style.display = visible ? '' : 'none';
+      });
+
+      buttons.forEach(function(btn) {
+        var parts = btn.dataset.filter.split(':');
+        var key = parts[0];
+        var value = parts[1];
+        var isActive = filters[key] === value;
+        btn.classList.toggle('ring-2', isActive);
+        btn.classList.toggle('ring-offset-1', isActive);
+        btn.classList.toggle('opacity-100', isActive);
+        if (isActive) {
+          btn.style.boxShadow = '0 0 0 2px hsl(var(--primary))';
+        } else {
+          btn.style.boxShadow = '';
+        }
+      });
+
+      if (clearBtn) {
+        clearBtn.style.display = Object.keys(filters).length > 0 ? '' : 'none';
+      }
+
+      document.querySelectorAll('[data-resource-section]').forEach(function(section) {
+        var visibleItems = section.querySelectorAll('[data-resource]:not([style*="display: none"])');
+        section.style.display = visibleItems.length > 0 ? '' : 'none';
+      });
+    }
+
+    buttons.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var parts = btn.dataset.filter.split(':');
+        var key = parts[0];
+        var value = parts[1];
+        if (filters[key] === value) {
+          delete filters[key];
+        } else {
+          filters[key] = value;
+        }
+        applyFilters();
+      });
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function() {
+        Object.keys(filters).forEach(function(k) { delete filters[k]; });
+        applyFilters();
+      });
+    }
+  })();
+  </script>
 </BaseLayout>
