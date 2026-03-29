@@ -40,7 +40,7 @@ const tocItems = ourSystemSections.map((s) => ({
               class="overflow-x-auto scroll-mt-4"
             >
               {isBiddingSection(section) ? (
-                <BiddingTable title={section.title} entries={section.entries} />
+                <BiddingTable title={section.title} prefix={section.prefix} entries={section.entries} />
               ) : (
                 <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
               )}

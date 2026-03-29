@@ -1,6 +1,6 @@
 ---
 import PrintLayout from "@/layouts/PrintLayout.astro";
-import { saycSystemSections, isBiddingSection } from "@/data/index";
+import { saycSystemSections, isBiddingSection, type BiddingSection } from "@/data/index";
 import { diffExplanations, type DiffExplanation } from "@/data/difference-explanations";
 
 // Map SAYC-SYSTEM.md section titles to diffExplanation section names
@@ -72,7 +72,7 @@ const minorCount = diffExplanations.filter(d => d.severity === 'minor').length;
               <tbody>
                 {section.entries.map((entry) => (
                   <tr>
-                    <td set:html={formatBid(entry.bid)} />
+                    <td set:html={((section as BiddingSection).prefix ? `<span style="color: #888">${formatBid((section as BiddingSection).prefix!)} → </span>` : '') + formatBid(entry.bid)} />
                     <td>{entry.hcp}</td>
                     <td set:html={formatBid(entry.description)} />
                   </tr>

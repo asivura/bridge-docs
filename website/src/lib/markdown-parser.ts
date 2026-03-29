@@ -190,6 +190,25 @@ const SKIP_SYSTEM = new Set([
   'About This System',
 ]);
 
+/** Extract auction prefix from section title for display context. */
+function extractPrefix(title: string): string | undefined {
+  // Blackwood responses — 4NT is already the bid context
+  if (/Responses to 4NT/.test(title)) return undefined;
+
+  // "Responses to 1♣", "Responses to 2♣(!)", "Responses to Weak 2♦/2♥/2♠"
+  let m = title.match(/Responses to (?:Weak\s+)?(\d[^\s:]+)/);
+  if (m) return m[1];
+
+  // "After Stayman: 1NT - 2♣(!)", "After 1♣ - 1♦",
+  // "Opener's Rebids After 2♣ - 2♦(!)", "Continuations After ...",
+  // "Example: After 1♥ - 2NT(!)"
+  // Requires bid sequence to start with a digit (excludes "After Opponent...")
+  m = title.match(/After\s+(?:[^:]+:\s*)?(\d[^\s:]+(?:\s*-\s*[^\s:]+)*)/);
+  if (m) return m[1].replace(/\s*-\s*/g, ' → ');
+
+  return undefined;
+}
+
 function parseSystemTable(table: ParsedTable): BiddingEntry[] {
   const { headers, rows } = table;
   const hcpI = colIdx(headers, 'HCP');
@@ -269,7 +288,8 @@ export function parseSystemMarkdown(md: string): SystemSection[] {
     const page = sec.page || parentPage;
 
     if (biddingEntries.length > 0) {
-      result.push({ title, page, entries: biddingEntries });
+      const prefix = extractPrefix(title);
+      result.push({ title, page, ...(prefix && { prefix }), entries: biddingEntries });
     }
 
     for (const { subTitle, table } of genericTables) {

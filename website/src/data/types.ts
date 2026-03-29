@@ -7,6 +7,7 @@ export interface BiddingEntry {
 export interface BiddingSection {
   title: string;
   page?: string;
+  prefix?: string;
   entries: BiddingEntry[];
 }
 

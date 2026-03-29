@@ -1,6 +1,6 @@
 ---
 import PrintLayout from "@/layouts/PrintLayout.astro";
-import { saycSystemSections, isBiddingSection } from "@/data/index";
+import { saycSystemSections, isBiddingSection, type BiddingSection } from "@/data/index";
 
 // Helper to colorize suit symbols
 function formatBid(text: string): string {
@@ -30,7 +30,7 @@ function formatBid(text: string): string {
               <tbody>
                 {section.entries.map((entry) => (
                   <tr>
-                    <td set:html={formatBid(entry.bid)} />
+                    <td set:html={((section as BiddingSection).prefix ? `<span style="color: #888">${formatBid((section as BiddingSection).prefix!)} → </span>` : '') + formatBid(entry.bid)} />
                     <td>{entry.hcp}</td>
                     <td set:html={formatBid(entry.description)} />
                   </tr>

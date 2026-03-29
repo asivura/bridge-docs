@@ -294,7 +294,7 @@ function findSections(titles: string[]) {
                     {matched.map((section) => (
                       <div class="overflow-x-auto">
                         {isBiddingSection(section) ? (
-                          <BiddingTable title={section.title} entries={section.entries} />
+                          <BiddingTable title={section.title} prefix={section.prefix} entries={section.entries} />
                         ) : (
                           <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
                         )}

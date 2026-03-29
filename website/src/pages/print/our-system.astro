@@ -1,6 +1,6 @@
 ---
 import PrintLayout from "@/layouts/PrintLayout.astro";
-import { ourSystemSections, isBiddingSection } from "@/data/index";
+import { ourSystemSections, isBiddingSection, type BiddingSection } from "@/data/index";
 
 // Group sections by page reference
 const grouped = new Map<string, typeof ourSystemSections>();
@@ -40,7 +40,7 @@ function formatBid(text: string): string {
                 <tbody>
                   {section.entries.map((entry) => (
                     <tr>
-                      <td set:html={formatBid(entry.bid)} />
+                      <td set:html={((section as BiddingSection).prefix ? `<span style="color: #888">${formatBid((section as BiddingSection).prefix!)} → </span>` : '') + formatBid(entry.bid)} />
                       <td>{entry.hcp}</td>
                       <td set:html={formatBid(entry.description)} />
                     </tr>
