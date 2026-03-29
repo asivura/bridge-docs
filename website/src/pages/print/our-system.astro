@@ -10,6 +10,10 @@ for (const section of ourSystemSections) {
   grouped.get(key)!.push(section);
 }
 
+// Assign sequential table numbers
+const tableNumberMap = new Map<typeof ourSystemSections[number], number>();
+ourSystemSections.forEach((s, i) => tableNumberMap.set(s, i + 1));
+
 // Helper to colorize suit symbols
 function formatBid(text: string): string {
   return text
@@ -27,19 +31,21 @@ function formatBid(text: string): string {
         <div class="print-page-header">{page}</div>
         {sections.map((section) => (
           <div class="print-section-block">
-            <div class="print-section-header">{section.title}</div>
+            <div class="print-section-header" set:html={`<span style="color: #888; font-weight: normal; font-size: 0.85em;">Table ${tableNumberMap.get(section)}:</span> ${formatBid(section.title)}`} />
             {isBiddingSection(section) ? (
               <table class="print-table">
                 <thead>
                   <tr>
+                    <th style="width: 1.5em; text-align: center;">#</th>
                     <th style="width: 30%">Bid</th>
                     <th style="width: 15%">HCP</th>
                     <th style="width: 55%">Description</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {section.entries.map((entry) => (
+                  {section.entries.map((entry, i) => (
                     <tr>
+                      <td style="text-align: center; color: #888; font-size: 0.8em;">{i + 1}</td>
                       <td set:html={((section as BiddingSection).prefix ? `<span style="color: #888">${formatBid((section as BiddingSection).prefix!)} → </span>` : '') + formatBid(entry.bid)} />
                       <td>{entry.hcp}</td>
                       <td set:html={formatBid(entry.description)} />
@@ -51,12 +57,14 @@ function formatBid(text: string): string {
               <table class="print-table">
                 <thead>
                   <tr>
+                    <th style="width: 1.5em; text-align: center;">#</th>
                     {section.headers.map((h) => <th>{h}</th>)}
                   </tr>
                 </thead>
                 <tbody>
-                  {section.rows.map((row) => (
+                  {section.rows.map((row, i) => (
                     <tr>
+                      <td style="text-align: center; color: #888; font-size: 0.8em;">{i + 1}</td>
                       {row.cells.map((cell) => <td set:html={formatBid(cell)} />)}
                     </tr>
                   ))}

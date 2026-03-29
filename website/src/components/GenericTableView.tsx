@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table";
 
 interface Props {
+  tableNumber?: number;
   title: string;
   headers: string[];
   rows: { cells: string[] }[];
@@ -40,13 +41,17 @@ function formatCell(text: string) {
   return <>{parts}</>;
 }
 
-export function GenericTableView({ title, headers, rows }: Props) {
+export function GenericTableView({ tableNumber, title, headers, rows }: Props) {
   return (
     <div className="space-y-2">
-      <h3 className="text-lg font-semibold">{title}</h3>
+      <h3 className="text-lg font-semibold">
+        {tableNumber != null && <span className="text-muted-foreground text-base font-normal">Table {tableNumber}: </span>}
+        {formatCell(title)}
+      </h3>
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead className="w-8 text-center">#</TableHead>
             {headers.map((h, i) => (
               <TableHead key={i}>{h}</TableHead>
             ))}
@@ -55,6 +60,7 @@ export function GenericTableView({ title, headers, rows }: Props) {
         <TableBody>
           {rows.map((row, i) => (
             <TableRow key={i}>
+              <TableCell className="text-center text-muted-foreground text-xs">{i + 1}</TableCell>
               {row.cells.map((cell, j) => (
                 <TableCell key={j}>{formatCell(cell)}</TableCell>
               ))}

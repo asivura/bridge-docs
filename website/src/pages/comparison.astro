@@ -13,6 +13,15 @@ import {
 } from "@/components/ui/table";
 import "@/styles/global.css";
 
+// Helper to colorize suit symbols
+function formatBid(text: string): string {
+  return text
+    .replace(/♠/g, '<span class="suit-spade" style="color: inherit;">♠</span>')
+    .replace(/♣/g, '<span class="suit-club" style="color: inherit;">♣</span>')
+    .replace(/♥/g, '<span class="suit-heart" style="color: #dc2626;">♥</span>')
+    .replace(/♦/g, '<span class="suit-diamond" style="color: #dc2626;">♦</span>');
+}
+
 const tocItems = comparisonSections.map((s) => ({
   id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
   label: s.title,
@@ -50,7 +59,7 @@ const tocItems = comparisonSections.map((s) => ({
           data-toc-target
           class="space-y-2 scroll-mt-4"
         >
-          <h2 class="text-lg font-semibold">{section.title}</h2>
+          <h2 class="text-lg font-semibold" set:html={formatBid(section.title)} />
           <div class="overflow-x-auto">
             <Table>
               <TableHeader>

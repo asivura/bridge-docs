@@ -17,6 +17,7 @@ interface BiddingEntry {
 }
 
 interface BiddingTableProps {
+  tableNumber?: number;
   title: string;
   prefix?: string;
   entries: BiddingEntry[];
@@ -50,13 +51,17 @@ function formatBid(bid: string) {
   return <>{parts}</>;
 }
 
-export function BiddingTable({ title, prefix, entries, showDiff = false }: BiddingTableProps) {
+export function BiddingTable({ tableNumber, title, prefix, entries, showDiff = false }: BiddingTableProps) {
   return (
     <div className="space-y-2">
-      <h3 className="text-lg font-semibold">{title}</h3>
+      <h3 className="text-lg font-semibold">
+        {tableNumber != null && <span className="text-muted-foreground text-base font-normal">Table {tableNumber}: </span>}
+        {formatBid(title)}
+      </h3>
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead className="w-8 text-center">#</TableHead>
             <TableHead className="w-24">Bid</TableHead>
             <TableHead className="w-20">HCP</TableHead>
             <TableHead>Description</TableHead>
@@ -71,6 +76,7 @@ export function BiddingTable({ title, prefix, entries, showDiff = false }: Biddi
                 showDiff && entry.diffType && entry.diffType !== "SAME" && "bg-muted/30",
               )}
             >
+              <TableCell className="text-center text-muted-foreground text-xs">{i + 1}</TableCell>
               <TableCell className="font-mono font-medium">
                 {prefix && <span className="text-muted-foreground">{formatBid(prefix)} → </span>}
                 {formatBid(entry.bid)}

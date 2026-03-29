@@ -181,11 +181,32 @@ for (const s of scanSections) {
   scanByPage.get(key)!.push(s);
 }
 
+// Helper to colorize suit symbols
+function formatBid(text: string): string {
+  return text
+    .replace(/♠/g, '<span style="color: inherit; font-weight: 600;">♠</span>')
+    .replace(/♣/g, '<span style="color: inherit; font-weight: 600;">♣</span>')
+    .replace(/♥/g, '<span style="color: #dc2626; font-weight: 600;">♥</span>')
+    .replace(/♦/g, '<span style="color: #dc2626; font-weight: 600;">♦</span>');
+}
+
 // Look up sections by title (exact match or prefix match for sub-sections)
 function findSections(titles: string[]) {
   return titles
     .flatMap((t) => ourSystemSections.filter((s) => s.title === t || s.title.startsWith(t + ':')))
     .filter((s): s is NonNullable<typeof s> => s != null);
+}
+
+// Pre-compute sequential table numbers across all verification sections
+const verificationTableNumbers = new Map<typeof ourSystemSections[number], number>();
+let verTableCounter = 1;
+for (const scan of scanSections) {
+  const matched = findSections(scan.sections);
+  for (const section of matched) {
+    if (!verificationTableNumbers.has(section)) {
+      verificationTableNumbers.set(section, verTableCounter++);
+    }
+  }
 }
 ---
 
@@ -215,7 +236,7 @@ function findSections(titles: string[]) {
                 href={`#${s.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                 class="rounded-md border bg-background px-2.5 py-1 text-xs font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
               >
-                {s.label}
+                <span set:html={formatBid(s.label)} />
               </a>
             ))}
           </div>
@@ -239,7 +260,7 @@ function findSections(titles: string[]) {
           {idx > 0 && <Separator />}
           <section id={scan.label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}>
             <div class="mb-4">
-              <h2 class="text-xl font-semibold">{scan.label}</h2>
+              <h2 class="text-xl font-semibold" set:html={formatBid(scan.label)} />
               <p class="text-sm text-muted-foreground">
                 Page {scan.page} &middot; {scan.image} &middot;
                 <span class="italic">{scan.russian}</span>
@@ -294,9 +315,9 @@ function findSections(titles: string[]) {
                     {matched.map((section) => (
                       <div class="overflow-x-auto">
                         {isBiddingSection(section) ? (
-                          <BiddingTable title={section.title} prefix={section.prefix} entries={section.entries} />
+                          <BiddingTable tableNumber={verificationTableNumbers.get(section)} title={section.title} prefix={section.prefix} entries={section.entries} />
                         ) : (
-                          <GenericTableView title={section.title} headers={section.headers} rows={section.rows} />
+                          <GenericTableView tableNumber={verificationTableNumbers.get(section)} title={section.title} headers={section.headers} rows={section.rows} />
                         )}
                       </div>
                     ))}

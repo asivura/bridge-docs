@@ -14,22 +14,24 @@ function formatBid(text: string): string {
 
 <PrintLayout title="Standard SAYC — Convention Card">
   <div class="print-grid">
-    {saycSystemSections.map((section) => (
+    {saycSystemSections.map((section, idx) => (
       <div class="print-grid-item">
         <div class="print-section-block">
-          <div class="print-section-header">{section.title}</div>
+          <div class="print-section-header" set:html={`<span style="color: #888; font-weight: normal; font-size: 0.85em;">Table ${idx + 1}:</span> ${formatBid(section.title)}`} />
           {isBiddingSection(section) ? (
             <table class="print-table">
               <thead>
                 <tr>
+                  <th style="width: 1.5em; text-align: center;">#</th>
                   <th style="width: 30%">Bid</th>
                   <th style="width: 15%">HCP</th>
                   <th style="width: 55%">Description</th>
                 </tr>
               </thead>
               <tbody>
-                {section.entries.map((entry) => (
+                {section.entries.map((entry, i) => (
                   <tr>
+                    <td style="text-align: center; color: #888; font-size: 0.8em;">{i + 1}</td>
                     <td set:html={((section as BiddingSection).prefix ? `<span style="color: #888">${formatBid((section as BiddingSection).prefix!)} → </span>` : '') + formatBid(entry.bid)} />
                     <td>{entry.hcp}</td>
                     <td set:html={formatBid(entry.description)} />
@@ -41,12 +43,14 @@ function formatBid(text: string): string {
             <table class="print-table">
               <thead>
                 <tr>
+                  <th style="width: 1.5em; text-align: center;">#</th>
                   {section.headers.map((h) => <th>{h}</th>)}
                 </tr>
               </thead>
               <tbody>
-                {section.rows.map((row) => (
+                {section.rows.map((row, i) => (
                   <tr>
+                    <td style="text-align: center; color: #888; font-size: 0.8em;">{i + 1}</td>
                     {row.cells.map((cell) => <td set:html={formatBid(cell)} />)}
                   </tr>
                 ))}
