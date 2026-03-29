@@ -47,7 +47,7 @@ jobs:
           sleep 3
           npm run generate-pdfs
           kill %1
-          cp -r public/downloads dist/downloads
+          cp public/downloads/*.pdf dist/downloads/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
