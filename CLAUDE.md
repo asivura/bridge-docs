@@ -70,6 +70,7 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 - Delegate ALL implementation work to team agents — do not write code, edit files, or make commits in the main session
 - The main session is for coordination only: creating tasks, spawning agents, relaying results, communicating with the user
 - When the user asks for a change, spawn a teammate agent to do it
+- Agents should commit and push changes frequently (after each meaningful change, not batched) so the user can verify on the live site
 - See `AGENT-TEAM-WORKFLOW.md` for team setup, task patterns, and tips
 
 ## When Updating Documents
