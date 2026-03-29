@@ -38,6 +38,7 @@ const scanSections = [
     label: "Jacoby Transfers",
     russian: "Трансфер Якоби",
     sections: ["After Heart Transfer: 1NT - 2♦(!) - 2♥", "After Spade Transfer: 1NT - 2♥(!) - 2♠", "Responses to 1NT: Direct Minor Suit Sequences"],
+    note: "1NT responses continue on Page 6 (slam sequences, Blackwood)",
     warnings: [],
   },
   {
@@ -46,6 +47,7 @@ const scanSections = [
     label: "1NT Continuations / Blackwood",
     russian: "1NT продолжения / Блэквуд",
     sections: ["Responses to 1NT: Slam Invitation Sequences", "Responses to 4NT"],
+    note: "Continues from Page 5 (1NT responses)",
     warnings: [],
   },
   {
@@ -100,6 +102,7 @@ const scanSections = [
     label: "Opener's Rebids After 1♣ (Part 1)",
     russian: "Ребиды открывающего после 1♣ (часть 1)",
     sections: ["After 1♣ - 1♦", "After 1♣ - 1♥"],
+    note: "Opener's rebids continue on Page 10",
     warnings: [
       {
         id: "ERR-21",
@@ -119,6 +122,7 @@ const scanSections = [
     label: "Opener's Rebids After 1♣ (Part 2)",
     russian: "Ребиды открывающего после 1♣ (часть 2)",
     sections: ["After 1♣ - 1♠", "After 1♣ - 1NT"],
+    note: "Continues from Page 9",
     warnings: [
       {
         id: "ERR-23",
@@ -140,6 +144,15 @@ const scanSections = [
         description: 'Doc says "GF" at 12-14 HCP, which is unusual (game force at minimum opening strength). Scan may say "GI" instead. Needs physical card.',
       },
     ],
+  },
+  {
+    image: "IMG_3958.jpg",
+    page: 11,
+    label: "Opener's Rebids After 1♣-2♣",
+    russian: "Ребиды после 1♣-2♣",
+    sections: ["After 1♣ - 2♣"],
+    note: "Continues from Page 10 (opener's rebids)",
+    warnings: [],
   },
   {
     image: "IMG_3958.jpg",
@@ -230,6 +243,11 @@ function findSections(titles: string[]) {
                 Page {scan.page} &middot; {scan.image} &middot;
                 <span class="italic">{scan.russian}</span>
               </p>
+              {scan.note && (
+                <p class="mt-1 text-sm italic text-muted-foreground">
+                  {scan.note}
+                </p>
+              )}
             </div>
 
             {scan.warnings.length > 0 && (
