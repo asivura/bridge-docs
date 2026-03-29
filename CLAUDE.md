@@ -58,6 +58,13 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 - Comment triggers: `[in-progress]`, `[qa-needed]`, `[qa-pass]` to transition status
 - Status flow: `new` → `in-progress` → `qa-needed` → `verified` → closed
 
+## CI Enforcement
+
+- Commit messages and PR titles are linted via `.github/workflows/lint-commits.yml`
+- PR titles must follow Conventional Commits format (`type: description`)
+- All commits in a PR are validated with commitlint
+- Subject line max 72 characters, lowercase after type, no trailing period
+
 ## Agent Workflow
 
 - Delegate ALL implementation work to team agents — do not write code, edit files, or make commits in the main session
