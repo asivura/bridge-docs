@@ -133,6 +133,24 @@
   @page {
     size: A4;
     margin: 15mm;
+
+    @top-center {
+      content: string(doc-title);
+      font-size: 8pt;
+      color: #737373;
+    }
+
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-size: 8pt;
+      color: #737373;
+    }
+  }
+
+  @page :first {
+    @top-center {
+      content: none;
+    }
   }
 
   * {
@@ -205,11 +223,9 @@
     color: #dc2626;
   }
 
-  /* Footer page numbers */
-  @bottom-center {
-    content: counter(page);
-    font-size: 8pt;
-    color: #737373;
+  /* Set document title for running header via string-set */
+  .print-title {
+    string-set: doc-title content();
   }
 }
 
