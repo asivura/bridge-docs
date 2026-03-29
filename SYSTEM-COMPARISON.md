@@ -51,7 +51,7 @@ Side-by-side comparison of every bidding situation.
 | Open | Resp | O | R | Our HCP | SAYC HCP | Description | Diff Type |
 |------|------|---|---|---------|----------|-------------|-----------|
 | 1NT | | | | 15-17 | 15-17 | Balanced | |
-| | PASS | | | 0-7 | 0-7 | No game interest | |
+| | PASS | | | 0-6 | 0-7 | No game interest | **HCP** |
 | | 2♣(!) | | | 8++ | 8+ | Stayman | |
 | | | 2♦ | | — | — | No 4-card major | |
 | | | | PASS | 0-6 | 0-6 | Weak Stayman escape | |
@@ -174,7 +174,7 @@ Side-by-side comparison of every bidding situation.
 | | 1♥ | 6++ | 4+♥, forcing | 6+ | 4+♥, forcing | |
 | | 1♠ | 6++ | 4+♠, forcing | 6+ | 4+♠, forcing | |
 | | 1NT | 6-10 | No 4M, NF | 6-10 | No 4M, NF | |
-| | 2♣ | 6++ | 4+♣ | 10+ | 4+♣, forcing | **HCP** |
+| | 2♣ | **6-10** | 4+♣ | 10+ | 4+♣, forcing | **HCP** |
 | | 2♦ | 6++ | 4+♦ support | 6-10 | 4+♦ support | |
 | | 2♥ | **17++** | SI | 10+ | 5+♥, forcing | **HCP** |
 | | 2♠ | **17++** | SI | 10+ | 5+♠, forcing | **HCP** |
@@ -190,7 +190,7 @@ Side-by-side comparison of every bidding situation.
 |------|------|---------|-----------------|----------|------------------|-----------|
 | 1♥ | | **12-19** | 5+♥ | 13-21 | 5+♥ | **HCP** |
 | | PASS | 0-5 | Weak | 0-5 | Weak | |
-| | 1♠ | 6++ | 4+♠, forcing | 6+ | 4+♠, forcing | |
+| | 1♠ | **6-10** | 4+♠, forcing | 6+ | 4+♠, forcing | **HCP** |
 | | 1NT | 6-10 | No 3+♥, no 3+♠ | 6-10 | No fit, NF | |
 | | 2♣ | **11++** | 4+♣, no 3+♠ | 10+ | 4+♣, forcing | **HCP** |
 | | 2♦ | **11++** | 4+♦, no 3+♠ | 10+ | 4+♦, forcing | **HCP** |
@@ -220,11 +220,11 @@ Side-by-side comparison of every bidding situation.
 | | 2♦ | **11++** | 4+♦, no 4+♥ | 10+ | 4+♦, forcing | **HCP** |
 | | 2♥ | **6-10** | 4+♥, no 3+♠ | 10+ | 5+♥, forcing | **HCP** |
 | | 2♠ | **17++** | GF, SI | 6-10 | 3+♠ support | **BOTH** |
-| | 2NT(!) | 13++ | Jacoby 2NT, 4+♠, GF | 13+ | Jacoby 2NT, 4+♠, GF | |
-| | 3♣ | **17++** | GF, SI | 10-12 | 5+♣, invitational | **HCP** |
-| | 3♦ | 10-12 | GI | 10-12 | 5+♦, invitational | |
-| | 3♥ | **17++** | GF, SI | 10-12 | 5+♥, invitational | **HCP** |
-| | 3♠(!) | 13-16 | GI | 10-12 | Limit raise | **HCP** |
+| | 2NT(!) | **17++** | Jacoby 2NT, 4+♠, GF | 13+ | Jacoby 2NT, 4+♠, GF | **HCP** |
+| | 3♣ | **17++** | Asking about short suit, GF, SI | 10-12 | 5+♣, invitational | **HCP** |
+| | 3♦ | **10-12** | 4+♦, GF, SI | 10-12 | 5+♦, invitational | |
+| | 3♥ | **10-12** | 3+♠, GI | 10-12 | 5+♥, invitational | |
+| | 3♠ | **13-16** | GF, SI | 10-12 | Limit raise | **HCP** |
 | | 3NT | 16-17 | Balanced, no 3+♠ | 15-17 | Balanced, 2-card support | |
 | | 4♣(!) | 13-16 | Splinter | — | Splinter (optional) | |
 | | 4♦(!) | 13-16 | Splinter | — | Splinter (optional) | |
@@ -323,7 +323,7 @@ After Jacoby 2NT (1M - 2NT), opener's rebids:
 | 4 | 2-level overcall | **8-16** | 10-16 | Lower min |
 | 5 | 1♣ - 2♦/2♥/2♠ | **6-10** | 10+ | Much lower |
 | 6 | 1♣ - 3♣ | **13-15** | 10-12 | Higher |
-| 7 | 1♦ - 2♣ | **6++** | 10+ | Lower |
+| 7 | 1♦ - 2♣ | **6-10** | 10+ | Lower |
 | 8 | 1♦ - 2♥/2♠ | **17++** | 10+ | Much higher |
 | 9 | 1♦ - 2NT | **13-15** | 11-12 | Slightly higher |
 | 10 | 1♥ - 2♣/2♦ | **11++** | 10+ | Slightly higher |
@@ -334,7 +334,7 @@ After Jacoby 2NT (1M - 2NT), opener's rebids:
 | 15 | 1♠ - 2♦ | **11++** | 10+ | Slightly higher |
 | 16 | 1♠ - 2♥ | **6-10** | 10+ | Lower |
 | 17 | 1♠ - 2♠ | **17++** | 6-10 | Much higher (GF vs raise) |
-| 18 | 1♠ - 3♥ | **17++** | 10-12 | Much higher |
+| 18 | 1♠ - 3♥ | **10-12** (3+♠, GI) | 10-12 (5+♥) | Same HCP, diff meaning |
 | 19 | 1♠ - 3♠(!) | **13-16** | 10-12 | Higher |
 | 20 | 1NT-2♦-2♥ invitational | **7-11** | 8-9 | Wider range |
 | 21 | 1NT-2♦-2♥ GF bids | **12++** | 10+ | Higher |
@@ -342,6 +342,9 @@ After Jacoby 2NT (1M - 2NT), opener's rebids:
 | 23 | 1NT-2♥-2♠ invitational | **7-11** | 8-9 | Wider range |
 | 24 | 1NT-2♥-2♠ GF bids | **12++** | 10+ | Higher |
 | 25 | 1NT-2♥-2♠-3NT | **12-16** | 10-15 | Higher min |
+| 26 | 1NT PASS | **0-6** | 0-7 | Lower max |
+| 27 | 1♥ - 1♠ | **6-10** | 6+ | Bounded range |
+| 28 | 1♠ - 2NT(!) | **17++** | 13+ | Higher min |
 
 ---
 

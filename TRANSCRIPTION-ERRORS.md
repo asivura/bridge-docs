@@ -4,6 +4,15 @@ Errors found by comparing scanned convention cards (`system-scans/IMG_3951.jpg` 
 
 Verification performed: 2026-03-29
 
+## Fix Status
+
+| Status | Count | Details |
+|--------|-------|---------|
+| **Fixed** | 19 | Applied to SYSTEM.md, propagated to SYSTEM-COMPARISON.md and SAYC-DIFFERENCES.md |
+| **Remaining** | 3 | ERR-19 (missing 3♠ row), ERR-12 description, NEW-02 (garbled lines 313-321) |
+| **Unverified** | 5 | ERR-20 through ERR-24 (need physical convention card) |
+| **Cross-doc** | 7 | Contradictions between SYSTEM.md and SYSTEM-COMPARISON.md |
+
 ---
 
 ## Error Severity Levels
@@ -19,7 +28,7 @@ Verification performed: 2026-03-29
 
 ## Page 4 (IMG_3951.jpg) -- Opening Bids and Defense
 
-### ERR-01: 2-Level Opening Bids Have Contradictory Rows
+### ERR-01: 2-Level Opening Bids Have Contradictory Rows ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` lines 59-62
@@ -40,7 +49,7 @@ The doc has four conflicting rows:
 
 ---
 
-### ERR-02: 2NT Opening Has Spurious "5+" in Description
+### ERR-02: 2NT Opening Has Spurious "5+" in Description ✅ FIXED
 
 **Severity:** MINOR
 **File:** `SYSTEM.md` line 63
@@ -56,7 +65,7 @@ The "5+" does not appear in the scan. A balanced 2NT opening would not require a
 
 ---
 
-### ERR-03: Defense Table -- 1NT Overcall Has Phantom Row
+### ERR-03: Defense Table -- 1NT Overcall Has Phantom Row ✅ FIXED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` line 84
@@ -74,7 +83,7 @@ The scan shows only **one** row: 1NT overcall = 15-18, balanced with stopper. Th
 
 ---
 
-### ERR-04: Defense Table -- "4+ card good 5-card suit" Is Self-Contradictory
+### ERR-04: Defense Table -- "4+ card good 5-card suit" Is Self-Contradictory ✅ FIXED
 
 **Severity:** MINOR
 **File:** `SYSTEM.md` line 83
@@ -92,7 +101,7 @@ The doc description is internally contradictory (is it 4+ or 5?).
 
 ## Page 5 (IMG_3952.jpg) -- Basic Responses to 1NT
 
-### ERR-05: PASS Over 1NT -- HCP Off by 1
+### ERR-05: PASS Over 1NT -- HCP Off by 1 ✅ FIXED
 
 **Severity:** MINOR
 **File:** `SYSTEM.md` line 100
@@ -108,7 +117,7 @@ This 1-point discrepancy also appears in the PASS after Stayman 2♦ denial (lin
 
 ---
 
-### ERR-06: 3♣ and 3♦ Direct Over 1NT -- Wrong HCP and Force Level
+### ERR-06: 3♣ and 3♦ Direct Over 1NT -- Wrong HCP and Force Level ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` lines 105-106
@@ -124,7 +133,7 @@ Both HCP threshold and force level differ. The scan shows these as game invitati
 
 ---
 
-### ERR-07: 3♥/3♠ and 4♥/4♠ Direct Over 1NT -- Values Swapped
+### ERR-07: 3♥/3♠ and 4♥/4♠ Direct Over 1NT -- Values Swapped ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` lines 107-111
@@ -144,7 +153,7 @@ The HCP ranges and descriptions for 3♥/3♠ and 4♥/4♠ appear to have been 
 
 ---
 
-### ERR-08: Slam Invitation Sequence 1NT-2♦(!) HCP
+### ERR-08: Slam Invitation Sequence 1NT-2♦(!) HCP ✅ FIXED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` line 186
@@ -168,7 +177,7 @@ No errors found in the Blackwood section or 1♣ responses section. All values m
 
 This page has the **highest concentration of errors**. Multiple HCP ranges and descriptions are wrong, swapped, or scrambled.
 
-### ERR-09: 1♦ - 1NT Description Is Wrong
+### ERR-09: 1♦ - 1NT Description Is Wrong ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` line 227
@@ -184,7 +193,7 @@ The doc description is completely different from the scan. The scan clearly says
 
 ---
 
-### ERR-10: 1♦ - 2♣ and 1♦ - 2♦ HCP Ranges Are Swapped
+### ERR-10: 1♦ - 2♣ and 1♦ - 2♦ HCP Ranges Are Swapped ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` lines 228-229
@@ -200,7 +209,7 @@ The HCP ranges for these two bids are transposed in the doc.
 
 ---
 
-### ERR-11: 1♦ - 2♦ Suit Length Is Wrong
+### ERR-11: 1♦ - 2♦ Suit Length Is Wrong ✅ FIXED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` line 229
@@ -214,7 +223,7 @@ The HCP ranges for these two bids are transposed in the doc.
 
 ---
 
-### ERR-12: 1♦ - 2NT HCP Is Wrong
+### ERR-12: 1♦ - 2NT HCP Is Wrong ⚠️ PARTIAL (HCP fixed to 13-15, description still wrong)
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` line 232
@@ -230,7 +239,7 @@ This is a major HCP discrepancy (4+ points off).
 
 ---
 
-### ERR-13: 1♠ - 2♥ HCP Is Wrong
+### ERR-13: 1♠ - 2♥ HCP Is Wrong ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` line 277
@@ -244,7 +253,7 @@ This is a major HCP discrepancy (4+ points off).
 
 ---
 
-### ERR-14: 1♠ - 2NT(!) HCP Is Wrong
+### ERR-14: 1♠ - 2NT(!) HCP Is Wrong ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` line 279
@@ -258,7 +267,7 @@ This is a major HCP discrepancy (4+ points off).
 
 ---
 
-### ERR-15: 1♠ - 3♦, 3♥, 3♠ Block Is Scrambled
+### ERR-15: 1♠ - 3♦, 3♥, 3♠ Block Is Scrambled ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` lines 281-283
@@ -277,7 +286,7 @@ The HCP for 3♦ and 3♥ should be 10-12, not 17+. The HCP for 3♠ should be 1
 
 ---
 
-### ERR-16: 1♠ - 3♣ Description Differs
+### ERR-16: 1♠ - 3♣ Description Differs ✅ FIXED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` line 280
@@ -295,7 +304,7 @@ The scan describes this bid as asking about the short suit ("Вопрос о к�
 
 ## Page 8 (IMG_3955.jpg) -- Responses to 1♥ and 2♣
 
-### ERR-17: 1♥ - 1♠ HCP Has No Upper Bound
+### ERR-17: 1♥ - 1♠ HCP Has No Upper Bound ✅ FIXED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` line 247
@@ -311,7 +320,7 @@ The scan shows a bounded range (6-10), while the doc shows an open-ended range (
 
 ---
 
-### ERR-18: Opener's Rebid 2♠ After 2♣-2♦ -- HCP Mismatch
+### ERR-18: Opener's Rebid 2♠ After 2♣-2♦ -- HCP Mismatch ✅ FIXED
 
 **Severity:** CRITICAL
 **File:** `SYSTEM.md` line 315
@@ -327,7 +336,7 @@ Since this is a rebid after a 2♣ opening (which already promises 22+), the doc
 
 ---
 
-### ERR-19: Missing 3♠ Bid After 2♣-2♦-2NT
+### ERR-19: Missing 3♠ Bid After 2♣-2♦-2NT ❌ NOT APPLIED
 
 **Severity:** MODERATE
 **File:** `SYSTEM.md` lines 332-337
@@ -338,7 +347,7 @@ The scan shows a **3♠** bid in the 2♣-2♦-2NT continuation section (possibl
 
 ---
 
-### ERR-20: 1♥ - 3♦ HCP May Be Wrong
+### ERR-20: 1♥ - 3♦ HCP May Be Wrong 🔍 NEEDS PHYSICAL CARD
 
 **Severity:** UNVERIFIED
 **File:** `SYSTEM.md` line 255
@@ -358,7 +367,7 @@ A "GF, SI" bid at only 10-12 HCP is unusual. The scan is hard to read at this re
 
 Scan quality on these pages is poor due to rotation and small text. Most HCP ranges match, but several descriptions are hard to confirm.
 
-### ERR-21: 1♣-1♦ Rebids -- Possible ♦/♣ Suit Swaps
+### ERR-21: 1♣-1♦ Rebids -- Possible ♦/♣ Suit Swaps 🔍 NEEDS PHYSICAL CARD
 
 **Severity:** UNVERIFIED
 **File:** `SYSTEM.md` lines 349-351
@@ -375,7 +384,7 @@ The suit references in the description column may have ♣ and ♦ swapped in se
 
 ---
 
-### ERR-22: 1♣-1♥ Row 2 (2♣) -- Puzzling Description
+### ERR-22: 1♣-1♥ Row 2 (2♣) -- Puzzling Description 🔍 NEEDS PHYSICAL CARD
 
 **Severity:** UNVERIFIED
 **File:** `SYSTEM.md` line 369
@@ -386,7 +395,7 @@ The doc says 2♣ rebid shows "4+♠", which is an unusual description for a clu
 
 ---
 
-### ERR-23: 1♣-1NT Rebids -- Possible Missing 2♦ Row
+### ERR-23: 1♣-1NT Rebids -- Possible Missing 2♦ Row 🔍 NEEDS PHYSICAL CARD
 
 **Severity:** UNVERIFIED
 **File:** `SYSTEM.md` lines 400-406
@@ -397,7 +406,7 @@ The doc shows only a "2♣" row at 12-16 with description "Pass in M". The scan 
 
 ---
 
-### ERR-24: 1♦-2♣ Row 4 (2NT) -- GF vs GI
+### ERR-24: 1♦-2♣ Row 4 (2NT) -- GF vs GI 🔍 NEEDS PHYSICAL CARD
 
 **Severity:** UNVERIFIED
 **File:** `SYSTEM.md` line 417
@@ -443,6 +452,33 @@ These files derive their "Our System" values from SYSTEM.md. Any corrections to 
 2. **Apply CRITICAL fixes first**: ERR-01, ERR-06, ERR-07, ERR-09, ERR-10, ERR-12, ERR-13, ERR-14, ERR-15, ERR-18 should be corrected in SYSTEM.md.
 3. **Propagate to comparison docs**: After fixing SYSTEM.md, update the "Our System" columns in SYSTEM-COMPARISON.md and the values in SAYC-DIFFERENCES.md.
 4. **Re-verify**: After corrections, re-run verification against the scans to confirm no new inconsistencies were introduced.
+
+---
+
+## Errors Discovered During Verification
+
+These errors were found by the content-verifier and scan-verifier agents during the fix verification pass.
+
+### NEW-02: Lines 313-321 Garbled (2♣-2♦ Rebids Section) ❌ NOT APPLIED
+
+**Severity:** CRITICAL
+**File:** `SYSTEM.md` lines 313-321
+
+The HCP values, bid meanings, and descriptions in the 2♣-2♦ opener's rebid continuations table appear to have shifted between columns. For example:
+
+| Line | Bid | Current HCP | Current Description |
+|------|-----|-------------|---------------------|
+| 313 | 3♣ | - | Negative, other distributions |
+| 314 | 3♦ | 0-7 | 5+♣, GI |
+| 315 | 3♥ | 5+ | 5+♦, GI |
+| 317 | 3NT | 22-24 | 5+♣, GI |
+| 318 | 4♣ | 22-24 | 5+♦, GI |
+| 319 | 4♦ | 17+ | 6+♥ |
+| 320 | 4♥ | 17+ | 6+♠ |
+
+The HCP values appear scrambled (e.g., "5+" as HCP for 3♥, "22-24" for 3NT and 4♣). Descriptions also appear shifted. This is likely a column-shift error from the original transcription.
+
+**Fix:** Verify against the physical convention card and reconstruct the table from scratch.
 
 ---
 

@@ -56,11 +56,8 @@ Our partnership bidding system, based on **SAYC (Standard American Yellow Card)*
 | 1♠ | 12-19 | 5+♠ |
 | 1NT | 15-17 | Balanced |
 | 2♣(!) | 22+ | Strong artificial - 22-24 balanced OR any strong hand |
-| 2♦ | 21+ | Long suit, 8 tricks |
-| 2♥ | 17+ | Long suit, game in hand |
-| 2♠ | 22+ | All other strong distributions |
-| 2♦/♥/♠ | 20-22 | 5+ card suit (alternative weak interpretation: 20-21, 5+) |
-| 2NT | 20-21 | Balanced, 5+ |
+| 2♦/♥/♠ | 20-22 | 5+ card suit |
+| 2NT | 20-21 | Balanced |
 | 3♣/♦/♥/♠ | 6-10 | 7+ card suit, preemptive |
 | 3NT | 25-27 | Balanced |
 | 4♣/♦ | 8- | 8+ card suit, preemptive |
@@ -80,9 +77,8 @@ Our partnership bidding system, based on **SAYC (Standard American Yellow Card)*
 | 1X | DBL | 11+ | Promises 4+ cards in unbid suits |
 | 1X | - | 13+ | Promises 3+ cards in unbid suits |
 | 1X | - | 17+ | From unbid suits |
-| 1X | 1X | 12-16 | 4+ card good 5-card suit |
-| 1X | 1NT | 8-16 | 5-4 distribution |
-| - | - | 15-18 | Balanced with stopper in opponent's suit |
+| 1X | 1X | 12-16 | 5+ card good suit |
+| 1X | 1NT | 15-18 | Balanced with stopper in opponent's suit |
 | - | 2X | 8-16 | 5+ card strong suit or good distribution (has second 5-card) |
 
 ---
@@ -97,18 +93,18 @@ Opening 1NT shows **15-17 HCP, balanced**.
 
 | Response | HCP | Meaning |
 |----------|-----|---------|
-| PASS | 0-7 | No game interest |
+| PASS | 0-6 | No game interest |
 | 2♣(!) | 8+ | **Stayman** - 4 in major, 5 in minor, asking for 4-card major |
 | 2♦(!) | ANY | **Transfer to ♥** - 5+♥, may be 5-5 |
 | 2♥(!) | ANY | **Transfer to ♠** - 5+♠ |
 | 2NT | 8-9 | Balanced, GI |
-| 3♣ | 12+ | Natural, GF |
-| 3♦ | 12+ | Natural, GF |
-| 3♥ | 8-9 | 5+♥, GI |
-| 3♠ | 8-9 | 5+♠, GI |
+| 3♣ | 10+ | Natural, GI |
+| 3♦ | 10+ | Natural, GI |
+| 3♥ | 10+ | 6+♥, GAME |
+| 3♠ | 10+ | 6+♠, GAME |
 | 3NT | 10+ | To play |
-| 4♥ | 10+ | 6+♥, to play |
-| 4♠ | 10+ | 6+♠, to play |
+| 4♥ | 8-9 | 6+♥, to play |
+| 4♠ | 8-9 | 6+♠, to play |
 | 4NT(!) | - | Quantitative slam invite, asking about aces |
 
 ### After Stayman: 1NT - 2♣(!)
@@ -125,7 +121,7 @@ Opening 1NT shows **15-17 HCP, balanced**.
 
 | Rebid | HCP | Meaning |
 |-------|-----|---------|
-| PASS | 0-7 | Weak, 5+♦ |
+| PASS | 0-6 | Weak, 5+♦ |
 | 2♥ | 7-11 | 5+♥, GI |
 | 2♠ | 7-11 | 5+♠, GI |
 | 2NT | 8-9 | GI, no major |
@@ -183,7 +179,7 @@ Opening 1NT shows **15-17 HCP, balanced**.
 
 | Sequence | HCP | Meaning |
 |----------|-----|---------|
-| 1NT - 2♦(!) | 10+ | GAME (via transfer) |
+| 1NT - 2♦(!) | 12+ | GAME (via transfer) |
 | 1NT - 2NT(!) | ???? | Asking about aces |
 | 1NT - 3♣ | 8-12 | 6+♣, no interest in NT, GAME |
 | 1NT - 3♦ | 8-12 | 6+♦, no interest in NT, GAME |
@@ -224,12 +220,12 @@ Opening 1♦ shows **12-22 HCP**.
 |----------|-----|---------|
 | 1♥ | 6+ | 4+♥ (or 4-4 in ♠♥), no 5♠ |
 | 1♠ | 6+ | 4+♠, may have 4+♥, no 5♠ |
-| 1NT | 6-10 | 4+♦, may have 4+♥, no 5♠ |
-| 2♣ | 6+ | No 4-card major |
-| 2♦ | 6-10 | 5+♦, no 4-card |
+| 1NT | 6-10 | No 4-card major |
+| 2♣ | 6-10 | No 4-card major |
+| 2♦ | 6+ | 4+♦, no 4-card |
 | 2♥ | 6+ | 4+♥, no 4-card |
 | 2♠ | 17+ | 4+♠, SI |
-| 2NT | 17+ | 4+♠, SI |
+| 2NT | 13-15 | 4+♠, SI |
 | 3♦ | 13-15 | Balanced, no 4-card major, GF |
 | 3NT | 16-17 | SI, asking about short suit |
 | 4NT(!) | 23+ | Balanced, no 4-card major, GAME, SI, asking about aces |
@@ -244,7 +240,7 @@ Opening 1♥ shows **12-22 HCP, 5+♥**.
 
 | Response | HCP | Meaning |
 |----------|-----|---------|
-| 1♠ | 6+ | 5+♠, may be 3+ |
+| 1♠ | 6-10 | 5+♠, may be 3+ |
 | 1NT | 6-10 | No 4+♠, no 3♥ support |
 | 2♣ | 11+ | 4+♣, no 4+♥ |
 | 2♦ | 11+ | 4+♦, no 3+♥ |
@@ -274,13 +270,13 @@ Opening 1♠ shows **12-22 HCP, 5+♠**.
 | 1NT | 6-10 | No 3+♠ support |
 | 2♣ | 11+ | 4+♣, no 3+♠ |
 | 2♦ | 11+ | 4+♦, no 3+♠ |
-| 2♥ | 11+ | 5+♥, may be 3+♠ |
+| 2♥ | 6-10 | 5+♥, may be 3+♠ |
 | 2♠ | 6-10 | 3+♠ support |
-| 2NT(!) | 13+ | Balanced, no 4-card major, GF, SI, **asking about short suit** |
-| 3♣ | 17+ | 4+♣, GF, SI |
-| 3♦ | 17+ | 4+♦, GF, SI |
-| 3♥ | 17+ | 4+♥, GF, SI |
-| 3♠ | 10-12 | 3+♠, GI |
+| 2NT(!) | 17+ | Balanced, no 4-card major, GF, SI, **asking about short suit** |
+| 3♣ | 17+ | Asking about short suit, GF, SI |
+| 3♦ | 10-12 | 4+♦, GF, SI |
+| 3♥ | 10-12 | 3+♠, GI |
+| 3♠ | 13-16 | GF, SI |
 | 3NT | 16-17 | Balanced, no 4-card major |
 | 4♣(!) | 13-16 | 3+♠, singleton/void in ♣, GF, SI |
 | 4♦(!) | 13-16 | 3+♠, singleton/void in ♦, GF, SI |
@@ -312,7 +308,7 @@ Opening 2♣(!) shows **22+ HCP**, artificial and forcing.
 | Rebid | HCP | Meaning |
 |-------|-----|---------|
 | 2♥ | 22-24 | 22-24 balanced OR 21+ long suit, 8 tricks |
-| 2♠ | 22+ | 17+ long suit, game in hand |
+| 2♠ | 22+ | Long suit, game in hand |
 | 2NT | 22+ | 22+ all other distributions, game in hand |
 | 3♣ | - | Negative, other distributions |
 | 3♦ | 0-7 | 5+♣, GI |
