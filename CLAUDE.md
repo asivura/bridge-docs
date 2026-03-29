@@ -14,8 +14,13 @@ Documentation for bridge bidding systems, with focus on our partnership system c
 | `SYSTEM-COMPARISON.md` | Side-by-side comparison of every bid |
 | `SAYC-CONVENTION-CARD.md` | SAYC reference in convention card format |
 | `SYSTEM.md` | Our partnership agreements |
+| `SAYC-SYSTEM.md` | Standard SAYC in same format as SYSTEM.md (for sharing) |
 | `systems/SAYC.md` | Standard SAYC reference |
 | `system-scans/` | Original scanned convention cards (Russian) |
+| `TRANSCRIPTION-ERRORS.md` | Scan vs doc error report (24 errors, 19 fixed) |
+| `REFERENCES.md` | Learning resources and related systems |
+| `WEBSITE-PLAN.md` | Architecture decisions for the static website |
+| `AGENT-TEAM-WORKFLOW.md` | How we use agent teams and track progress |
 
 ## Our System vs SAYC
 

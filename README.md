@@ -29,11 +29,21 @@ See [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) for complete details.
 | Document | Description |
 |----------|-------------|
 | [SYSTEM.md](SYSTEM.md) | Our partnership agreements (from scanned cards) |
+| [SAYC-SYSTEM.md](SAYC-SYSTEM.md) | Standard SAYC in same format as SYSTEM.md (for sharing) |
 | [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) | **All differences between our system and SAYC** |
 | [SYSTEM-COMPARISON.md](SYSTEM-COMPARISON.md) | **Side-by-side comparison of every bid** |
 | [SAYC-CONVENTION-CARD.md](SAYC-CONVENTION-CARD.md) | SAYC reference in convention card format |
+| [TRANSCRIPTION-ERRORS.md](TRANSCRIPTION-ERRORS.md) | Scan vs documentation error report (24 errors, 19 fixed) |
 | [REFERENCES.md](REFERENCES.md) | Learning resources and related systems |
 | `system-scans/` | Original scanned system cards (Russian) |
+
+### Project Documents
+
+| Document | Description |
+|----------|-------------|
+| [WEBSITE-PLAN.md](WEBSITE-PLAN.md) | Architecture decisions for the static website |
+| [AGENT-TEAM-WORKFLOW.md](AGENT-TEAM-WORKFLOW.md) | How we use agent teams and track progress |
+| `website/` | Astro + shadcn/ui static site (in progress) |
 
 ### System References
 
