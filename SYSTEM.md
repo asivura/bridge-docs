@@ -248,7 +248,7 @@ Opening 1♥ shows **12-22 HCP, 5+♥**.
 | 2♠ | 17+ | 4+♠, GF, SI |
 | 2NT(!) | 13+ | Balanced, no 3+♥, **asking about short suit** |
 | 3♣ | 17+ | 4+♣, GF, SI |
-| 3♦ | 10-12 | 4+♦, GF, SI |
+| 3♦ | 17+ | 4+♦, GF, SI |
 | 3♥ | 13-16 | 3+♥, singleton/void (splinter) |
 | 3♠ | 16-17 | Balanced, no 3+♥, 4+ |
 | 3NT | - | GAME, SI |

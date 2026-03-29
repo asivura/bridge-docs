@@ -8,9 +8,9 @@ Verification performed: 2026-03-29
 
 | Status | Count | Details |
 |--------|-------|---------|
-| **Fixed** | 19 | Applied to SYSTEM.md, propagated to SYSTEM-COMPARISON.md and SAYC-DIFFERENCES.md |
+| **Fixed** | 20 | Applied to SYSTEM.md, propagated to SYSTEM-COMPARISON.md and SAYC-DIFFERENCES.md |
 | **Remaining** | 3 | ERR-19 (missing 3♠ row), ERR-12 description, NEW-02 (garbled lines 313-321) |
-| **Unverified** | 5 | ERR-20 through ERR-24 (need physical convention card) |
+| **Unverified** | 4 | ERR-21 through ERR-24 (need physical convention card) |
 | **Cross-doc** | 7 | Contradictions between SYSTEM.md and SYSTEM-COMPARISON.md |
 
 ---
@@ -347,19 +347,20 @@ The scan shows a **3♠** bid in the 2♣-2♦-2NT continuation section (possibl
 
 ---
 
-### ERR-20: 1♥ - 3♦ HCP May Be Wrong 🔍 NEEDS PHYSICAL CARD
+### ERR-20: 1♥ - 3♦ HCP Was Wrong ✅ FIXED
 
-**Severity:** UNVERIFIED
-**File:** `SYSTEM.md` line 255
+**Severity:** CRITICAL
+**File:** `SYSTEM.md` line 251
 
 | | Value |
 |---|---|
-| Scan | **Unclear, possibly 13-16** |
-| Doc | 10-12 |
+| Scan | **17+** (confirmed from IMG_3955.jpg, matches 3♣ pattern) |
+| Doc (before fix) | 10-12 |
+| Doc (after fix) | **17+** |
 
-A "GF, SI" bid at only 10-12 HCP is unusual. The scan is hard to read at this resolution, but the value may be higher.
+The 3♦ response had its HCP scrambled with another row. The scan clearly shows 3♦ at 17+ (matching the 3♣ row), consistent with a GF, SI new-suit bid.
 
-**Fix:** Verify against the physical convention card.
+**Fix applied:** Changed SYSTEM.md 1♥-3♦ HCP from 10-12 to 17+. SYSTEM-COMPARISON.md and SAYC-DIFFERENCES.md already had the correct 17++ value.
 
 ---
 
