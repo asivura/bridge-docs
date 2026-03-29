@@ -165,7 +165,7 @@ GitHub Issue #3 (permanent)
 | doc-fixer | Editor | Apply 19 fixes to SYSTEM.md, propagate to comparison docs |
 | sayc-creator | Editor | Research SAYC, create SAYC-SYSTEM.md in same format |
 
-**Result:** 18/19 fixes applied correctly. SAYC-SYSTEM.md created. 2 disputed errors flagged. 2 new errors discovered.
+**Result:** 18/19 fixes applied correctly. SAYC-SYSTEM.md created. 2 disputed errors flagged. 2 new errors discovered. See issue #2 for remaining items.
 
 ### Team: bridge-website
 
@@ -185,9 +185,11 @@ GitHub Issue #3 (permanent)
 |-------|------|---------|
 | content-verifier | Read-only | Verified applied fixes against scans |
 | diff-analyst | Read-only | Deep analysis of all system differences |
-| progress-tracker | Editor | Keeps GitHub issues (#2, #3, #4) and repo docs updated |
+| progress-tracker | Editor | Keeps GitHub issues (#2-#6) and repo docs updated |
 | ida-explorer | Read-only | Researched ida project's tech stack |
 | pages-researcher | Read-only | Researched GitHub Pages setup options |
+| qa-monitor | Read-only + Playwright | Visual QA of deployed pages, screenshot verification |
+| resources-builder | Editor | Built comprehensive resources page with curated content |
 
 ## Tips
 

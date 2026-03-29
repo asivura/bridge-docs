@@ -46,6 +46,7 @@ See [SAYC-DIFFERENCES.md](SAYC-DIFFERENCES.md) for complete details.
 | `website/` | Astro + shadcn/ui static site ([live](https://asivura.github.io/bridge-docs/)) |
 | `.github/workflows/issues.yml` | Issue status automation (label transitions) |
 | `.github/workflows/deploy.yml` | GitHub Pages deploy with PDF generation |
+| `.github/workflows/lint-commits.yml` | Commit message and PR title linting (Conventional Commits) |
 
 ### System References
 

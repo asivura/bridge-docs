@@ -62,6 +62,12 @@ Interactive components replaced with zero-JS alternatives:
 | `/sayc` | SAYC-SYSTEM.md | Full SAYC system in same format |
 | `/comparison` | SYSTEM-COMPARISON.md | Side-by-side with diff badges |
 | `/differences` | SAYC-DIFFERENCES.md | Summary of key differences |
+| `/verification` | Scan images + SYSTEM.md | Scan-vs-transcription verification |
+| `/resources` | Curated resource data | Educational bridge learning resources |
+| `/downloads` | PDF links | Downloadable PDF convention cards |
+| `/print/our-system` | SYSTEM.md | Print-optimized layout for PDF generation |
+| `/print/sayc` | SAYC-SYSTEM.md | Print-optimized layout for PDF generation |
+| `/print/transition-guide` | SAYC-DIFFERENCES.md | Print-optimized transition guide for PDF |
 
 ### Deployment: GitHub Pages
 
@@ -99,6 +105,13 @@ website/
       sayc.astro                 # Standard SAYC
       comparison.astro           # Side-by-side comparison
       differences.astro          # Key differences summary
+      verification.astro         # Scan-vs-transcription verification
+      resources.astro            # Educational bridge resources
+      downloads.astro            # Downloadable PDF convention cards
+      print/
+        our-system.astro         # Print layout for PDF generation
+        sayc.astro               # Print layout for PDF generation
+        transition-guide.astro   # Print layout for PDF generation
     data/
       our-system.ts              # Structured data from SYSTEM.md
       sayc-system.ts             # Structured data from SAYC-SYSTEM.md
@@ -140,3 +153,12 @@ website/
 - Test GitHub Pages deployment
 - Verify all content matches source markdown
 - Add meta tags, favicon, Open Graph for sharing
+
+### Phase 5: Post-Launch Additions
+- Print-optimized pages (`/print/our-system`, `/print/sayc`, `/print/transition-guide`) for PDF generation
+- Downloadable PDF convention cards via `/downloads` page
+- PDF generation using Playwright in the deploy workflow
+- Comprehensive resources page (`/resources`) with curated bridge learning materials
+- Sticky sidebar table of contents with scroll spy on long pages
+- Commit and PR title linting via `.github/workflows/lint-commits.yml`
+- Visual QA screenshots in `website/qa-screenshots/`
