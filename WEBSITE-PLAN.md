@@ -157,8 +157,7 @@ website/
 ### Phase 5: Post-Launch Additions
 - Print-optimized pages (`/print/our-system`, `/print/sayc`, `/print/transition-guide`) for PDF generation
 - Downloadable PDF convention cards via `/downloads` page
-- PDF generation using Playwright in the deploy workflow
+- PDF generation using weasyprint in the deploy workflow (pure build artifacts, not committed to git)
 - Comprehensive resources page (`/resources`) with curated bridge learning materials
 - Sticky sidebar table of contents with scroll spy on long pages
 - Commit and PR title linting via `.github/workflows/lint-commits.yml`
-- Visual QA screenshots in `website/qa-screenshots/`
