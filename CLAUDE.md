@@ -47,6 +47,13 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 | 11 | IMG_3958.jpg | Weak Suit Asking convention |
 | 12 | IMG_3959.jpg | Scoring reference |
 
+## GitHub Issues
+
+- When the user reports a bug or requests a feature during a session, create or update a GitHub issue for it
+- Keep issue checklists in sync with actual progress
+- Add comments to issues when work is completed, referencing commit hashes
+- Use workstream-level issues with checklists, not one issue per small task
+
 ## When Updating Documents
 
 - Always verify HCP values against the original scans
