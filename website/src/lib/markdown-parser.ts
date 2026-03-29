@@ -158,15 +158,22 @@ function parseSystemTable(table: ParsedTable): BiddingEntry[] {
   return [];
 }
 
+/** Check if a subsection title is self-descriptive (contains bid context). */
+function isSelfDescriptive(title: string): boolean {
+  return /[♣♦♥♠]|NT|After|\d/.test(title);
+}
+
 export function parseSystemMarkdown(md: string): BiddingSection[] {
   const sections = splitSections(md);
   const result: BiddingSection[] = [];
   let parentPage: string | undefined;
+  let parentTitle: string | undefined;
   let skipParent = false;
 
   for (const sec of sections) {
     if (sec.level === 2) {
       parentPage = sec.page;
+      parentTitle = sec.title;
       skipParent = SKIP_SYSTEM.has(sec.title);
     }
     if (skipParent || SKIP_SYSTEM.has(sec.title)) continue;
@@ -176,7 +183,11 @@ export function parseSystemMarkdown(md: string): BiddingSection[] {
     for (const t of tables) entries.push(...parseSystemTable(t));
 
     if (entries.length > 0) {
-      result.push({ title: sec.title, page: sec.page || parentPage, entries });
+      let title = sec.title;
+      if (sec.level === 3 && parentTitle && !isSelfDescriptive(title)) {
+        title = `${parentTitle}: ${title}`;
+      }
+      result.push({ title, page: sec.page || parentPage, entries });
     }
   }
   return result;
