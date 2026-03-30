@@ -1,6 +1,9 @@
 ---
 import PrintLayout from "@/layouts/PrintLayout.astro";
 import { ourSystemSections, isBiddingSection, type BiddingSection } from "@/data/index";
+import { ourSystemRevisions } from "@/data/revisions";
+
+const latestVersion = ourSystemRevisions[ourSystemRevisions.length - 1].version;
 
 // Group sections by page reference
 const grouped = new Map<string, typeof ourSystemSections>();
@@ -75,5 +78,20 @@ function formatBid(text: string): string {
         ))}
       </div>
     ))}
+  </div>
+
+  <div class="print-section-block" style="margin-top: 2em; border-top: 2px solid #333; padding-top: 1em;">
+    <p style="font-size: 0.75rem; color: #666; margin-bottom: 0.5em;">
+      Version {latestVersion} — Generated {new Date().toISOString().split('T')[0]}
+    </p>
+    <div class="print-section-header">Revision History</div>
+    <table class="print-table">
+      <thead><tr><th>Date</th><th>Version</th><th>Changes</th></tr></thead>
+      <tbody>
+        {ourSystemRevisions.map(r => (
+          <tr><td>{r.date}</td><td>{r.version}</td><td>{r.changes}</td></tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </PrintLayout>

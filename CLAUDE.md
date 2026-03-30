@@ -77,3 +77,4 @@ The original scans are in Russian (`system-scans/IMG_3951.jpg` to `IMG_3959.jpg`
 - Use SAYC.md as the reference for standard SAYC values
 - Mark differences clearly with **bold** and Diff Type column
 - When SYSTEM.md changes, always propagate to: SYSTEM-COMPARISON.md, SAYC-DIFFERENCES.md, TRANSCRIPTION-ERRORS.md, and website/src/data/difference-explanations.ts
+- When changing system content, update revision history in website/src/data/revisions.ts
