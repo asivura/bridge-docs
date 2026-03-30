@@ -12,17 +12,18 @@ Standard American Yellow Card (SAYC) - the official ACBL bidding system for casu
 2. [Opening Bids](#opening-bids)
 3. [Defense After Opponent's Opening](#defense-after-opponents-opening)
 4. [Responses to 1NT](#responses-to-1nt)
-5. [Responses to 1♣](#responses-to-1)
-6. [Responses to 1♦](#responses-to-1-1)
-7. [Responses to 1♥](#responses-to-1-2)
-8. [Responses to 1♠](#responses-to-1-3)
-9. [Strong 2♣ Opening](#strong-2-opening)
-10. [Weak Two Bids](#weak-two-bids)
-11. [Opener's Rebids](#openers-rebids)
-12. [Jacoby 2NT Convention](#jacoby-2nt-convention)
-13. [Ace Asking (4NT)](#ace-asking-4nt)
-14. [Competitive Bidding](#competitive-bidding)
-15. [Scoring Reference](#scoring-reference)
+5. [After Interference Over 1NT](#after-interference-over-1nt)
+6. [Responses to 1♣](#responses-to-1)
+7. [Responses to 1♦](#responses-to-1-1)
+8. [Responses to 1♥](#responses-to-1-2)
+9. [Responses to 1♠](#responses-to-1-3)
+10. [Strong 2♣ Opening](#strong-2-opening)
+11. [Weak Two Bids](#weak-two-bids)
+12. [Opener's Rebids](#openers-rebids)
+13. [Jacoby 2NT Convention](#jacoby-2nt-convention)
+14. [Ace Asking (4NT)](#ace-asking-4nt)
+15. [Competitive Bidding](#competitive-bidding)
+16. [Scoring Reference](#scoring-reference)
 
 ---
 
@@ -234,6 +235,40 @@ Opening 1NT shows **15-17 HCP, balanced**.
 | 1NT - 4NT | 16-17 | Quantitative slam invite |
 | 1NT - 5NT | 20-21 | Quantitative grand slam invite |
 | 1NT - 6NT | 18-19 | To play |
+
+---
+
+## After Interference Over 1NT
+
+### After 1NT - Double (Penalty)
+
+When opponent doubles partner's 1NT opening, standard SAYC agreements:
+
+| Resp | HCP | Hand Description |
+|------|-----|------------------|
+| PASS | 7+ | Willing to play 1NT doubled, no long suit to run to |
+| Rdbl | 10+ | Strong hand, suggesting we can make 1NT doubled (or penalty interest) |
+| 2♣ | 0-7 | Natural escape, 5+♣ (or 4+♣ as cheapest escape) |
+| 2♦ | 0-7 | Natural escape, 5+♦ |
+| 2♥ | 0-7 | Natural escape, 5+♥ |
+| 2♠ | 0-7 | Natural escape, 5+♠ |
+
+**Key principle:** After opponent's double, all 2-level bids are natural and weak (NOT Stayman or transfers). Systems are OFF.
+
+### After 1NT - 2♣/♦/♥/♠ (Overcall)
+
+When opponent overcalls partner's 1NT:
+
+| Resp | HCP | Hand Description |
+|------|-----|------------------|
+| PASS | 0-7 | No game interest, can't act |
+| DBL | 8+ | Penalty double, good holding in opponent's suit |
+| 2X (new suit) | 8+ | Natural, 5+ card suit, forcing |
+| 2NT | 8-9 | Balanced, stopper in opponent's suit, GI |
+| 3NT | 10-15 | Balanced, stopper in opponent's suit, to play |
+| Cuebid | 10+ | Stayman equivalent, asking for 4-card major |
+
+**Key principle:** After opponent's overcall, new suits are forcing (not weak). Double is penalty.
 
 ---
 

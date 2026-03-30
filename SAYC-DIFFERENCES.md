@@ -309,6 +309,7 @@ The following features are the same as standard SAYC:
 | Stayman | Yes (2♣ over 1NT) |
 | Jacoby Transfers | Yes (2♦/2♥ over 1NT) |
 | Major suit requirement | 5+ cards |
+| Interference over 1NT | Systems OFF after double; penalty DBL after overcall |
 
 **Note:** Our system does NOT use weak two bids. 2♦/2♥/2♠ show 20-22 HCP with 5+ card suit (see Difference #4).
 
