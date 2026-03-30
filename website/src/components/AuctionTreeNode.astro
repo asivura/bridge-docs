@@ -1,0 +1,62 @@
+---
+import { BiddingTable } from "@/components/BiddingTable";
+import { GenericTableView } from "@/components/GenericTableView";
+import { isBiddingSection } from "@/data/types";
+import { nodeHasContent, type TreeNode, type SectionInfo } from "@/data/auction-trees";
+
+interface Props {
+  node: TreeNode;
+  sectionMap: Map<string, SectionInfo>;
+}
+
+const { node, sectionMap } = Astro.props;
+
+const info = node.sectionTitle ? sectionMap.get(node.sectionTitle) : undefined;
+const sectionId = node.sectionTitle
+  ? node.sectionTitle.toLowerCase().replace(/[^a-z0-9]+/g, "-")
+  : node.title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+const visibleChildren = (node.children ?? []).filter((child) =>
+  nodeHasContent(child, sectionMap),
+);
+
+const hasContent = info || visibleChildren.length > 0;
+---
+
+{hasContent && (
+  <details
+    open={node.defaultOpen}
+    id={info ? sectionId : undefined}
+    data-toc-target={info ? "" : undefined}
+    class="auction-tree-node scroll-mt-4"
+  >
+    <summary class="cursor-pointer py-2 font-semibold hover:text-primary">
+      {node.title}
+    </summary>
+    <div class="ml-4 border-l-2 border-muted pl-4 mt-2 space-y-4">
+      {info && isBiddingSection(info.section) && (
+        <div class="overflow-x-auto">
+          <BiddingTable
+            tableNumber={info.tableNumber}
+            title={info.section.title}
+            prefix={info.section.prefix}
+            entries={info.section.entries}
+          />
+        </div>
+      )}
+      {info && !isBiddingSection(info.section) && (
+        <div class="overflow-x-auto">
+          <GenericTableView
+            tableNumber={info.tableNumber}
+            title={info.section.title}
+            headers={info.section.headers}
+            rows={info.section.rows}
+          />
+        </div>
+      )}
+      {visibleChildren.map((child) => (
+        <Astro.self node={child} sectionMap={sectionMap} />
+      ))}
+    </div>
+  </details>
+)}

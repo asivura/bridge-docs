@@ -2,14 +2,25 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
 import { GenericTableView } from "@/components/GenericTableView";
+import AuctionTreeNode from "@/components/AuctionTreeNode.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import { saycSystemSections, isBiddingSection } from "@/data/index";
+import { buildRenderList } from "@/data/auction-trees";
 import "@/styles/global.css";
 
-const tocItems = saycSystemSections.map((s) => ({
-  id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-  label: s.title,
-}));
+const renderList = buildRenderList(saycSystemSections);
+
+const tocItems = saycSystemSections.map((s) => {
+  let label = s.title;
+  if (label.length > 40 && label.includes(':')) {
+    const parts = label.split(':');
+    label = parts[parts.length - 1].trim();
+  }
+  return {
+    id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    label,
+  };
+});
 ---
 
 <BaseLayout title="SAYC">
@@ -22,19 +33,23 @@ const tocItems = saycSystemSections.map((s) => ({
 
   <div class="mt-8 flex gap-8">
     <div class="min-w-0 flex-1 space-y-8">
-      {saycSystemSections.map((section, idx) => (
-        <div
-          id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
-          data-toc-target
-          class="overflow-x-auto scroll-mt-4"
-        >
-          {isBiddingSection(section) ? (
-            <BiddingTable tableNumber={idx + 1} title={section.title} prefix={section.prefix} entries={section.entries} />
-          ) : (
-            <GenericTableView tableNumber={idx + 1} title={section.title} headers={section.headers} rows={section.rows} />
-          )}
-        </div>
-      ))}
+      {renderList.map((item) =>
+        item.type === 'tree' ? (
+          <AuctionTreeNode node={item.node} sectionMap={item.sectionMap} />
+        ) : (
+          <div
+            id={item.section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+            data-toc-target
+            class="overflow-x-auto scroll-mt-4"
+          >
+            {isBiddingSection(item.section) ? (
+              <BiddingTable tableNumber={item.tableNumber} title={item.section.title} prefix={item.section.prefix} entries={item.section.entries} />
+            ) : (
+              <GenericTableView tableNumber={item.tableNumber} title={item.section.title} headers={item.section.headers} rows={item.section.rows} />
+            )}
+          </div>
+        )
+      )}
     </div>
 
     <TableOfContents items={tocItems} />

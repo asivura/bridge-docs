@@ -2,26 +2,25 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { BiddingTable } from "@/components/BiddingTable";
 import { GenericTableView } from "@/components/GenericTableView";
+import AuctionTreeNode from "@/components/AuctionTreeNode.astro";
 import TableOfContents from "@/components/TableOfContents.astro";
 import { ourSystemSections, isBiddingSection } from "@/data/index";
+import { buildRenderList } from "@/data/auction-trees";
 import "@/styles/global.css";
 
-// Group sections by page reference
-const grouped = new Map<string, typeof ourSystemSections>();
-for (const section of ourSystemSections) {
-  const key = section.page || "Other";
-  if (!grouped.has(key)) grouped.set(key, []);
-  grouped.get(key)!.push(section);
-}
+const renderList = buildRenderList(ourSystemSections);
 
-// Assign sequential table numbers across all sections
-const tableNumberMap = new Map<typeof ourSystemSections[number], number>();
-ourSystemSections.forEach((s, i) => tableNumberMap.set(s, i + 1));
-
-const tocItems = ourSystemSections.map((s) => ({
-  id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-  label: s.title,
-}));
+const tocItems = ourSystemSections.map((s) => {
+  let label = s.title;
+  if (label.length > 40 && label.includes(':')) {
+    const parts = label.split(':');
+    label = parts[parts.length - 1].trim();
+  }
+  return {
+    id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    label,
+  };
+});
 ---
 
 <BaseLayout title="Our System">
@@ -33,25 +32,24 @@ const tocItems = ourSystemSections.map((s) => ({
   </div>
 
   <div class="mt-8 flex gap-8">
-    <div class="min-w-0 flex-1 space-y-10">
-      {Array.from(grouped.entries()).map(([page, sections]) => (
-        <div class="space-y-8">
-          <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
-          {sections.map((section) => (
-            <div
-              id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
-              data-toc-target
-              class="overflow-x-auto scroll-mt-4"
-            >
-              {isBiddingSection(section) ? (
-                <BiddingTable tableNumber={tableNumberMap.get(section)} title={section.title} prefix={section.prefix} entries={section.entries} />
-              ) : (
-                <GenericTableView tableNumber={tableNumberMap.get(section)} title={section.title} headers={section.headers} rows={section.rows} />
-              )}
-            </div>
-          ))}
-        </div>
-      ))}
+    <div class="min-w-0 flex-1 space-y-8">
+      {renderList.map((item) =>
+        item.type === 'tree' ? (
+          <AuctionTreeNode node={item.node} sectionMap={item.sectionMap} />
+        ) : (
+          <div
+            id={item.section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
+            data-toc-target
+            class="overflow-x-auto scroll-mt-4"
+          >
+            {isBiddingSection(item.section) ? (
+              <BiddingTable tableNumber={item.tableNumber} title={item.section.title} prefix={item.section.prefix} entries={item.section.entries} />
+            ) : (
+              <GenericTableView tableNumber={item.tableNumber} title={item.section.title} headers={item.section.headers} rows={item.section.rows} />
+            )}
+          </div>
+        )
+      )}
     </div>
 
     <TableOfContents items={tocItems} />
