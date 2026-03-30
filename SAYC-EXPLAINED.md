@@ -559,7 +559,7 @@ After partner opens and opponent overcalls, **double is for takeout** (negative)
 | Open | Opp | DBL Shows | Why |
 |------|-----|-----------|-----|
 | 1♣ | 1♦ | 4-4 in majors | Opponent's overcall took away your ability to bid 1♦ naturally. Double shows both majors efficiently in one bid. |
-| 1♣ | 1♥ | 4+♠ | You can't bid 1♠ with only 4 spades and minimum values (bidding a suit at the 1-level is fine). Actually, you CAN bid 1♠ here. The double specifically shows 4♠ when you might also have tolerance for other suits. |
+| 1♣ | 1♥ | 4+♠ | Hearts was bypassed. Double shows spades and possibly tolerance for other suits. |
 | 1♣ | 1♠ | 4+♥ | Hearts was bypassed by the overcall. Double says "I have hearts." |
 | 1♦ | 1♥ | 4+♠ (1♠ would be 5+) | If you bid 1♠ freely, that shows 5+. Double shows exactly 4 spades. This distinction is valuable for finding 4-4 vs 5-3 fits. |
 | 1♦ | 1♠ | 4+♥ | Hearts was bypassed. Double shows hearts. |
