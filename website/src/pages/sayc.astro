@@ -6,10 +6,17 @@ import TableOfContents from "@/components/TableOfContents.astro";
 import { saycSystemSections, isBiddingSection } from "@/data/index";
 import "@/styles/global.css";
 
-const tocItems = saycSystemSections.map((s) => ({
-  id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-  label: s.title,
-}));
+const tocItems = saycSystemSections.map((s) => {
+  let label = s.title;
+  if (label.length > 40 && label.includes(':')) {
+    const parts = label.split(':');
+    label = parts[parts.length - 1].trim();
+  }
+  return {
+    id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    label,
+  };
+});
 ---
 
 <BaseLayout title="SAYC">

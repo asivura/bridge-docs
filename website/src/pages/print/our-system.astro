@@ -28,7 +28,9 @@ function formatBid(text: string): string {
   <div class="print-grid">
     {Array.from(grouped.entries()).map(([page, sections], groupIdx) => (
       <div class:list={["print-grid-item", groupIdx > 1 && ""]}>
-        <div class="print-page-header">{page}</div>
+        {page !== "Other" && (
+          <div class="print-page-header">{page}</div>
+        )}
         {sections.map((section) => (
           <div class="print-section-block">
             <div class="print-section-header" set:html={`<span style="color: #888; font-weight: normal; font-size: 0.85em;">Table ${tableNumberMap.get(section)}:</span> ${formatBid(section.title)}`} />

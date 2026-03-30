@@ -18,10 +18,17 @@ for (const section of ourSystemSections) {
 const tableNumberMap = new Map<typeof ourSystemSections[number], number>();
 ourSystemSections.forEach((s, i) => tableNumberMap.set(s, i + 1));
 
-const tocItems = ourSystemSections.map((s) => ({
-  id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
-  label: s.title,
-}));
+const tocItems = ourSystemSections.map((s) => {
+  let label = s.title;
+  if (label.length > 40 && label.includes(':')) {
+    const parts = label.split(':');
+    label = parts[parts.length - 1].trim();
+  }
+  return {
+    id: s.title.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+    label,
+  };
+});
 ---
 
 <BaseLayout title="Our System">
@@ -36,7 +43,9 @@ const tocItems = ourSystemSections.map((s) => ({
     <div class="min-w-0 flex-1 space-y-10">
       {Array.from(grouped.entries()).map(([page, sections]) => (
         <div class="space-y-8">
-          <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
+          {page !== "Other" && (
+            <h2 class="border-b pb-2 text-xl font-semibold text-muted-foreground">{page}</h2>
+          )}
           {sections.map((section) => (
             <div
               id={section.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}
