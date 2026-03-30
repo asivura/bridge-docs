@@ -2,6 +2,9 @@
 import PrintLayout from "@/layouts/PrintLayout.astro";
 import { saycSystemSections, isBiddingSection, type BiddingSection } from "@/data/index";
 import { diffExplanations, type DiffExplanation } from "@/data/difference-explanations";
+import { transitionGuideRevisions } from "@/data/revisions";
+
+const latestVersion = transitionGuideRevisions[transitionGuideRevisions.length - 1].version;
 
 // Map SAYC-SYSTEM.md section titles to diffExplanation section names
 const sectionMap: Record<string, string> = {
@@ -119,5 +122,20 @@ const minorCount = diffExplanations.filter(d => d.severity === 'minor').length;
         </div>
       </div>
     ))}
+  </div>
+
+  <div class="print-section-block" style="margin-top: 2em; border-top: 2px solid #333; padding-top: 1em;">
+    <p style="font-size: 0.75rem; color: #666; margin-bottom: 0.5em;">
+      Version {latestVersion} — Generated {new Date().toISOString().split('T')[0]}
+    </p>
+    <div class="print-section-header">Revision History</div>
+    <table class="print-table">
+      <thead><tr><th>Date</th><th>Version</th><th>Changes</th></tr></thead>
+      <tbody>
+        {transitionGuideRevisions.map(r => (
+          <tr><td>{r.date}</td><td>{r.version}</td><td>{r.changes}</td></tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </PrintLayout>
