@@ -154,14 +154,37 @@ Opening 1NT shows **15-17 HCP, balanced** (may include 5-card major or minor).
 | 4♥ | 10+ | 6+♥, to play |
 | 4NT | 16+ | RKCB for hearts |
 
-### Interference Over 1NT
+### After 1NT - Double (Penalty)
 
-| Opponent's Bid | Your Actions |
-|----------------|--------------|
-| Double | Systems ON (Stayman, transfers) |
-| 2♣ | Double = Stayman; other systems ON |
-| 2♦ | Double = transfer to ♥; 3♦ = Stayman |
-| 2♥ or higher | Cuebid = Stayman (GF); other bids natural |
+When opponent doubles partner's 1NT opening, standard SAYC agreements:
+
+| Resp | HCP | Hand Description |
+|------|-----|------------------|
+| PASS | 7+ | Willing to play 1NT doubled, no long suit to run to |
+| Rdbl | 10+ | Strong hand, suggesting we can make 1NT doubled (or penalty interest) |
+| 2♣ | 0-7 | Natural escape, 5+♣ (or 4+♣ as cheapest escape) |
+| 2♦ | 0-7 | Natural escape, 5+♦ |
+| 2♥ | 0-7 | Natural escape, 5+♥ |
+| 2♠ | 0-7 | Natural escape, 5+♠ |
+
+**Key principle:** After opponent's double, all 2-level bids are natural and weak (NOT Stayman or transfers). Systems are OFF.
+
+> **Note:** Some partnerships agree to play "systems ON" after a double (Stayman and transfers still apply). This is a common variation but not standard SAYC. Discuss with partner.
+
+### After 1NT - 2♣/♦/♥/♠ (Overcall)
+
+When opponent overcalls partner's 1NT:
+
+| Resp | HCP | Hand Description |
+|------|-----|------------------|
+| PASS | 0-7 | No game interest, can't act |
+| DBL | 8+ | Penalty double, good holding in opponent's suit |
+| 2X (new suit) | 8+ | Natural, 5+ card suit, forcing |
+| 2NT | 8-9 | Balanced, stopper in opponent's suit, GI |
+| 3NT | 10-15 | Balanced, stopper in opponent's suit, to play |
+| Cuebid | 10+ | Stayman equivalent, asking for 4-card major |
+
+**Key principle:** After opponent's overcall, new suits are forcing (not weak). Double is penalty.
 
 ---
 
