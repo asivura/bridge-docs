@@ -156,20 +156,19 @@ Opening 1NT shows **15-17 HCP, balanced** (may include 5-card major or minor).
 
 ### After 1NT - Double (Penalty)
 
-When opponent doubles partner's 1NT opening, standard SAYC agreements:
+When opponent doubles partner's 1NT opening, **systems are ON** — Stayman and Jacoby Transfers still apply.
 
 | Resp | HCP | Hand Description |
 |------|-----|------------------|
-| PASS | 7+ | Willing to play 1NT doubled, no long suit to run to |
-| Rdbl | 10+ | Strong hand, suggesting we can make 1NT doubled (or penalty interest) |
-| 2♣ | 0-7 | Natural escape, 5+♣ (or 4+♣ as cheapest escape) |
-| 2♦ | 0-7 | Natural escape, 5+♦ |
-| 2♥ | 0-7 | Natural escape, 5+♥ |
-| 2♠ | 0-7 | Natural escape, 5+♠ |
+| PASS | 0-7 | No 5-card suit, willing to play 1NT doubled |
+| Rdbl | 10+ | Strong hand, suggesting penalty (we can make this) |
+| 2♣(!) | 8+ | Stayman, asking for 4-card major (same as without double) |
+| 2♦(!) | ANY | Jacoby Transfer to ♥ (same as without double) |
+| 2♥(!) | ANY | Jacoby Transfer to ♠ (same as without double) |
+| 2♠ | ANY | Transfer to 3♣ (same as without double) |
+| 2NT | 8-9 | Balanced, GI (same as without double) |
 
-**Key principle:** After opponent's double, all 2-level bids are natural and weak (NOT Stayman or transfers). Systems are OFF.
-
-> **Note:** Some partnerships agree to play "systems ON" after a double (Stayman and transfers still apply). This is a common variation but not standard SAYC. Discuss with partner.
+**Key principle:** After opponent's penalty double of 1NT, all conventions remain in effect. The double does NOT change your bidding system.
 
 ### After 1NT - 2♣/♦/♥/♠ (Overcall)
 
